@@ -10,12 +10,12 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="yireo" sortOrder="999" translate="label">
-            <label>Yireo</label>
+        <tab id="adpage" sortOrder="999" translate="label">
+            <label>AdPage</label>
         </tab>
-        <section id="googletagmanager2" translate="label" sortOrder="342" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Yireo GoogleTagManager</label>
-            <tab>yireo</tab>
+        <section id="GTM" translate="label" sortOrder="342" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>AdPage GTM</label>
+            <tab>adpage</tab>
             <resource>AdPage_GTM::config</resource>
             <group id="settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Settings</label>

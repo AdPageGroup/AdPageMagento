@@ -16,38 +16,6 @@ define([
 ], function ($, _, Component, customerData, logger, pusher, ko) {
     'use strict';
 
-    var moduleConfig = {};
-
-    var isDisabled = function () {
-        if (isValidConfig() === false) {
-            return true;
-        }
-
-        return isAllowedByCookieRestrictionMode() === false;
-    };
-
-    var isValidConfig = function () {
-        if (typeof moduleConfig.config === 'undefined' || !moduleConfig.config) {
-            logger('Warning: config empty, terminating GTM initialization.');
-            return false;
-        }
-
-        return true;
-    };
-
-    var isAllowedByCookieRestrictionMode = function () {
-        if (!moduleConfig.cookie_restriction_mode) {
-            return true;
-        }
-
-        return $.cookie(moduleConfig.cookie_restriction_mode);
-    };
-
-    var isLoggedIn = function () {
-        var customer = customerData.get('customer');
-        return customer() && customer().firstname;
-    };
-
     var processGtmDataFromSection = function (sectionName) {
         const eventData = getGtmDataFromSection(sectionName);
         if (true === isEmpty(eventData)) {
@@ -130,12 +98,6 @@ define([
 
     return Component.extend({
         initialize: function (config) {
-            moduleConfig = config;
-
-            if (isDisabled()) {
-                return;
-            }
-
             let attributes = {};
             const sectionNames = getSectionNames();
             sectionNames.forEach(function (sectionName) {

@@ -2,7 +2,7 @@ var config = {
     config: {
         mixins: {
             'mage/validation': {
-                'AdPage_GTMn-mixin': true
+                'AdPage_GTM/js/validation-mixin': true
             }
         }
     }
