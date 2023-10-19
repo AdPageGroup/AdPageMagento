@@ -24,11 +24,10 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="id" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Container Public ID</label>
-                    <comment>ID of your Google Tag container, starting with "GTM-"</comment>
-                    <frontend_model>AdPage\GTM\Model\Config\Frontend\ContainerId</frontend_model>
-                    <backend_model>AdPage\GTM\Model\Config\Backend\ContainerId</backend_model>
-                    <validate>validate-ga4-container-id</validate>
+                    <label>Container Config</label>
+                    <comment>Config value which can be found in your trytagging dashboard</comment>
+                    <frontend_model>AdPage\GTM\Model\Config\Frontend\ContainerConfig</frontend_model>
+                    <backend_model>AdPage\GTM\Model\Config\Backend\ContainerConfig</backend_model>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>

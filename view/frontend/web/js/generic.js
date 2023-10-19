@@ -27,8 +27,8 @@ define([
     };
 
     var isValidConfig = function () {
-        if (typeof moduleConfig.id === 'undefined' || !moduleConfig.id) {
-            logger('Warning: Identifier empty, terminating GTM initialization.');
+        if (typeof moduleConfig.config === 'undefined' || !moduleConfig.config) {
+            logger('Warning: config empty, terminating GTM initialization.');
             return false;
         }
 

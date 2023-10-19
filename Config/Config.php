@@ -49,10 +49,6 @@ class Config implements ArgumentInterface
             return false;
         }
 
-        if (false === $this->isDeveloperMode() && false === $this->isIdValid()) {
-            return false;
-        }
-
         return true;
     }
 
@@ -105,9 +101,9 @@ class Config implements ArgumentInterface
      *
      * @return string
      */
-    public function getId(): string
+    public function getConfig(): string
     {
-        return (string)$this->getModuleConfigValue('id');
+        return (string)$this->getModuleConfigValue('config');
     }
 
     /**
@@ -237,13 +233,5 @@ class Config implements ArgumentInterface
     private function isDeveloperMode(): bool
     {
         return $this->appState->getMode() === AppState::MODE_DEVELOPER;
-    }
-
-    /**
-     * @return bool
-     */
-    private function isIdValid(): bool
-    {
-        return 0 === strpos($this->getId(), 'GTM-');
     }
 }
