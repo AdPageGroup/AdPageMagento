@@ -15,13 +15,13 @@
             <block
                 name="AdPage_GTM.pusher-script"
                 template="AdPage_GTM::hyva/script-pusher.phtml"
-                ifconfig="googletagmanager2/settings/enabled"
+                ifconfig="GTM/settings/enabled"
             />
 
             <block
                 name="AdPage_GTM.logger-script"
                 template="AdPage_GTM::hyva/script-logger.phtml"
-                ifconfig="googletagmanager2/settings/enabled"
+                ifconfig="GTM/settings/enabled"
             />
         </referenceContainer>
 

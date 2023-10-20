@@ -197,7 +197,7 @@ class Config implements ArgumentInterface
      */
     public function getModuleConfigValue(string $key, $defaultValue = null)
     {
-        return $this->getConfigValue('googletagmanager2/settings/' . $key, $defaultValue);
+        return $this->getConfigValue('GTM/settings/' . $key, $defaultValue);
     }
 
     /**
