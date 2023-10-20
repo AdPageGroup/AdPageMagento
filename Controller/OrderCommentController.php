@@ -8,8 +8,8 @@ class OrderCommentController extends \Magento\Framework\App\Action\Action {
     {
         $post = $this->getRequest()->getPostValue();
 
-        echo "<pre>";
-        print_r($post);
-        exit;
+        return [
+            'id' => 'test'
+        ];
     }
 }
