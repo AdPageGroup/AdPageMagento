@@ -23,7 +23,7 @@
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="config" translate="label" formElement="textarea" cols="15" rows="5" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Container HEAD code</label>
                     <comment>Config value which can be found in your trytagging dashboard</comment>
                     <frontend_model>AdPage\GTM\Model\Config\Frontend\ContainerConfig</frontend_model>
