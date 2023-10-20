@@ -22,7 +22,7 @@ $config = $block->getConfig();
         events.forEach(function (eventType) {
             window.addEventListener(eventType, initgoogleTagManager2, {once: true, passive: true})
         })
-    })([<?php if ($config->waitForUserInteraction() === false) : ?>'load', <?php endif; ?>'keydown', 'mouseover', 'scroll', 'touchstart', 'wheel']);
+    })(['load']);
 </script>
 
 <?php if ($config->isDebug()): ?>

@@ -77,16 +77,6 @@ class Config implements ArgumentInterface
     }
 
     /**
-     * Wait for user interaction to start
-     *
-     * @return bool
-     */
-    public function waitForUserInteraction(): bool
-    {
-        return (bool)$this->getModuleConfigValue('wait_for_ui');
-    }
-
-    /**
      * Check whether mouse clicks are debugged as well
      *
      * @return bool
@@ -104,30 +94,6 @@ class Config implements ArgumentInterface
     public function getConfig(): string
     {
         return (string)$this->getModuleConfigValue('config');
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaximumCategoryProducts(): int
-    {
-        return (int)$this->getModuleConfigValue('category_products');
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getProductEavAttributeCodes(): array
-    {
-        return explode(',', (string)$this->getModuleConfigValue('product_eav_attributes'));
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getCategoryEavAttributeCodes(): array
-    {
-        return explode(',', (string)$this->getModuleConfigValue('category_eav_attributes'));
     }
 
     /**
@@ -149,18 +115,6 @@ class Config implements ArgumentInterface
         }
 
         return (string)$this->storeManager->getDefaultStoreView()->getName();
-    }
-
-    /**
-     * @return string
-     */
-    public function getCookieRestrictionModeName(): string
-    {
-        if ($this->cookieHelper->isCookieRestrictionModeEnabled()) {
-            return CookieHelper::IS_USER_ALLOWED_SAVE_COOKIE;
-        }
-
-        return '';
     }
 
     /**

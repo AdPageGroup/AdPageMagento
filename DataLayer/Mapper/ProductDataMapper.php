@@ -95,7 +95,7 @@ class ProductDataMapper
      */
     private function getProductFields(): array
     {
-        return array_filter(array_merge(['name'], $this->config->getProductEavAttributeCodes()));
+        return array_filter(['name']);
     }
 
     /**
