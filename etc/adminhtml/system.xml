@@ -25,7 +25,7 @@
                 </field>
                 <field id="config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Container HEAD code</label>
-                    <comment>Config value which can be found in your trytagging dashboard</comment>
+                    <comment>Container Head code which can be found in the trytagging dashboard</comment>
                     <frontend_model>AdPage\GTM\Model\Config\Frontend\ContainerConfig</frontend_model>
                     <backend_model>AdPage\GTM\Model\Config\Backend\ContainerConfig</backend_model>
                     <depends>
@@ -34,22 +34,14 @@
                 </field>
                 <field id="serverside_gtm_url" type="text" translate="label" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Container URL</label>
-                    <comment><![CDATA[<span>When a value is present in this field, data will send to this url instead of https://www.googletagmanager.com.
-                    Default output: https://gtm-test123.uc.r.appspot.com. Create a cname in the dns records for a name like marketing.shopname.com</span><br/>
-                    <b>Keep in mind</b>; enter a full url (with https://). ]]></comment>
+                    <comment><![CDATA[<span>Enter the container url without https://<span><br/>
+                    <b>Keep in mind</b>; This must much with the container config you are installing. ]]></comment>
                 </field>
                 <field id="debug" type="select" translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Debug</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="enabled">1</field>
-                    </depends>
-                </field>
-                <field id="debug_clicks" type="select" translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Debug Clicks</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <depends>
-                        <field id="debug">1</field>
                     </depends>
                 </field>
             </group>

@@ -45,10 +45,6 @@ $productPath = $block->getProductPath();
                 }
 
                 googleTagManager2Pusher(eventData, 'push (page event "select_item") [script-product-clicks.phtml]');
-
-                if (window['AdPage_GTM_DEBUG_CLICKS'] && confirm("Press to continue with redirect") === false) {
-                    event.preventDefault();
-                }
             });
         })
     }

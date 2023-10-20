@@ -28,6 +28,5 @@ $config = $block->getConfig();
 <?php if ($config->isDebug()): ?>
     <script>
         window.AdPage_GTM_DEBUG = true;
-        window.AdPage_GTM_DEBUG_CLICKS = <?= $config->isDebugClicks() ? 'true' : 'false' ?>;
     </script>
 <?php endif; ?>

@@ -7,6 +7,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use AdPage\GTM\Api\CheckoutSessionDataProviderInterface;
 use AdPage\GTM\DataLayer\Event\Purchase as PurchaseEvent;
+use Exception;
 
 class TriggerPurchaseDataLayerEvent implements ObserverInterface
 {
@@ -23,6 +24,11 @@ class TriggerPurchaseDataLayerEvent implements ObserverInterface
 
     public function execute(Observer $observer)
     {
+        try {
+
+        } catch (Exception $e) {
+        }
+
         /** @var OrderInterface $order */
         $order = $observer->getData('order');
         $this->checkoutSessionDataProvider->add(

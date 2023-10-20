@@ -62,7 +62,7 @@ class Config implements ArgumentInterface
     {
         return $this->getModuleConfigValue(
             'serverside_gtm_url',
-            'https://www.googletagmanager.com'
+            ''
         );
     }
 
@@ -74,16 +74,6 @@ class Config implements ArgumentInterface
     public function isDebug(): bool
     {
         return (bool)$this->getModuleConfigValue('debug');
-    }
-
-    /**
-     * Check whether mouse clicks are debugged as well
-     *
-     * @return bool
-     */
-    public function isDebugClicks(): bool
-    {
-        return $this->isDeveloperMode() && $this->isDebug() && $this->getModuleConfigValue('debug_clicks');
     }
 
     /**
