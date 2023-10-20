@@ -101,7 +101,14 @@ class Config implements ArgumentInterface
      */
     public function getCustomerEavAttributeCodes(): array
     {
-        return explode(',', (string)$this->getModuleConfigValue('customer_eav_attributes'));
+        return [
+            'email',
+            'firstname',
+            'middlename',
+            'lastname',
+            'dob',
+            'created_at'
+        ];
     }
 
     /**
@@ -115,30 +122,6 @@ class Config implements ArgumentInterface
         }
 
         return (string)$this->storeManager->getDefaultStoreView()->getName();
-    }
-
-    /**
-     * @return string
-     */
-    public function getViewCartOccurances(): string
-    {
-        return $this->getModuleConfigValue('view_cart_occurances');
-    }
-
-    /**
-     * @return bool
-     */
-    public function showViewCartEventEverywhere(): bool
-    {
-        return $this->getViewCartOccurances() === ViewCartOccurancesOptions::EVERYWHERE;
-    }
-
-    /**
-     * @return bool
-     */
-    public function showViewMiniCartOnExpandOnly(): bool
-    {
-        return (bool)$this->getModuleConfigValue('view_cart_on_mini_cart_expand_only');
     }
 
     /**

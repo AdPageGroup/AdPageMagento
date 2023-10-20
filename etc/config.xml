@@ -6,9 +6,6 @@
                 <enabled>0</enabled>
                 <config/>
                 <debug>0</debug>
-                <customer_eav_attributes>id</customer_eav_attributes>
-                <view_cart_occurances>everywhere</view_cart_occurances>
-                <view_cart_on_mini_cart_expand_only>1</view_cart_on_mini_cart_expand_only>
             </settings>
         </googletagmanager2>
     </default>
