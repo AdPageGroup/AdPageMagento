@@ -33,6 +33,12 @@ define(['googleTagManagerLogger'], function (logger) {
         logger(message, eventData);
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ecommerce: null});
+
+        if (window.taggingHelpers) {
+            cleanEventData.marketing = window.taggingHelpers.getMarketingData();
+            cleanEventData.device = window.taggingHelpers.getDeviceInfo();
+        }
+
         window.dataLayer.push(cleanEventData);
         window.AdPage_GTM_PAST_EVENTS.push(eventHash);
     };
