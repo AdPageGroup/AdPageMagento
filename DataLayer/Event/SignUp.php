@@ -9,7 +9,7 @@ class SignUp implements EventInterface
     public function get(): array
     {
         return [
-            'event' => 'sign_up',
+            'event' => 'trytagging_sign_up',
             'method' => 'Standard' // @TODO: implement mapping based on the route used?
         ];
     }

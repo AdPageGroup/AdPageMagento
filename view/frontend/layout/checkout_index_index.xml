@@ -57,7 +57,7 @@
             <block
                 name="AdPage_GTM.script-begin-checkout"
                 template="AdPage_GTM::luma/script-begin-checkout.phtml"
-                ifconfig="googletagmanager2/settings/enabled"
+                ifconfig="GTM/settings/enabled"
                 after="AdPage_GTM.data-layer"
             >
                 <arguments>

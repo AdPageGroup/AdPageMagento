@@ -15,7 +15,7 @@
             <block
                     name="AdPage_GTM.script"
                     template="AdPage_GTM::script.phtml"
-                    ifconfig="googletagmanager2/settings/enabled"
+                    ifconfig="GTM/settings/enabled"
             >
                 <arguments>
                     <argument name="config" xsi:type="object">AdPage\GTM\Config\Config</argument>
@@ -27,7 +27,7 @@
             <block
                     name="AdPage_GTM.iframe"
                     template="AdPage_GTM::iframe.phtml"
-                    ifconfig="googletagmanager2/settings/enabled"
+                    ifconfig="GTM/settings/enabled"
             >
                 <arguments>
                     <argument name="config" xsi:type="object">AdPage\GTM\Config\Config</argument>
@@ -39,7 +39,7 @@
             <block
                     name="AdPage_GTM.data-layer"
                     template="AdPage_GTM::luma/data-layer.phtml"
-                    ifconfig="googletagmanager2/settings/enabled"
+                    ifconfig="GTM/settings/enabled"
             >
                 <arguments>
                     <argument name="data_layer_view_model" xsi:type="object">
@@ -73,7 +73,7 @@
             <block
                     name="AdPage_GTM.script-additions"
                     template="AdPage_GTM::luma/script-additions.phtml"
-                    ifconfig="googletagmanager2/settings/enabled"
+                    ifconfig="GTM/settings/enabled"
                     after="AdPage_GTM.data-layer"
             >
                 <arguments>
@@ -88,7 +88,7 @@
             <block
                     name="AdPage_GTM.script-product-clicks"
                     template="AdPage_GTM::luma/script-product-clicks.phtml"
-                    ifconfig="googletagmanager2/settings/enabled"
+                    ifconfig="GTM/settings/enabled"
                     after="AdPage_GTM.data-layer"
             >
                 <arguments>

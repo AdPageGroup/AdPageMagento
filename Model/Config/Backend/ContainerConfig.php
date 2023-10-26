@@ -3,10 +3,9 @@
 namespace AdPage\GTM\Model\Config\Backend;
 
 use Magento\Framework\App\Config\Value;
-use Magento\Framework\App\State;
 use AdPage\GTM\Exception\InvalidConfig;
 
-class ContainerId extends Value
+class ContainerConfig extends Value
 {
     public function beforeSave()
     {
@@ -19,15 +18,7 @@ class ContainerId extends Value
 
     private function validate(): bool
     {
-        if ($this->_appState->getMode() === State::MODE_DEVELOPER) {
-            return true;
-        }
-
-        if (empty($this->getValue())) {
-            return true;
-        }
-
-        if (preg_match('/^GTM-/', $this->getValue())) {
+        if (!empty($this->getValue())) {
             return true;
         }
 

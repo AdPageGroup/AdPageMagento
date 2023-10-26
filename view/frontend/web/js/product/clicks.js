@@ -5,7 +5,6 @@ define([
     return function(config, element) {
         const productPath = config.productPath || '.product-items a.product';
         $(productPath).click(function(event) {
-            const debugClicks = window['AdPage_GTM_DEBUG_CLICKS'] || false;
             const $parent = $(this).closest('[id^=product-item-info_]');
             const regex = /_(\d+)$/;
             const matches = $parent.attr('id').match(regex);
@@ -21,10 +20,6 @@ define([
             }
 
             pusher(eventData, 'push (page event "select_item") [clicks.js]');
-
-            if (debugClicks && confirm("Press to continue with redirect") === false) {
-                event.preventDefault();
-            }
         });
     }
 });

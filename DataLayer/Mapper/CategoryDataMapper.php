@@ -52,6 +52,6 @@ class CategoryDataMapper
      */
     private function getCategoryFields(): array
     {
-        return array_filter(array_merge(['id', 'name'], $this->config->getCategoryEavAttributeCodes()));
+        return array_filter(['id', 'name']);
     }
 }

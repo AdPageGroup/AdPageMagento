@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="AdPage\GTM\Api\OrderCommentControllerInterface" type="AdPage\GTM\Controller\OrderCommentController"/>
     <preference for="AdPage\GTM\Api\CheckoutSessionDataProviderInterface" type="AdPage\GTM\SessionDataProvider\CheckoutSessionDataProvider"/>
-
     <preference for="AdPage\GTM\Api\CustomerSessionDataProviderInterface" type="AdPage\GTM\SessionDataProvider\CustomerSessionDataProvider"/>
 
     <type name="AdPage\GTM\Logger\Debugger">

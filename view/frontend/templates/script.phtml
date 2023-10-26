@@ -16,27 +16,17 @@ $config = $block->getConfig();
                 window.removeEventListener(eventType, initgoogleTagManager2);
             });
 
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = '<?= $config->getGoogleTagmanagerUrl() ?>/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', '<?= $config->getId() ?>');
+            <?= $config->getConfig() ?>
         }
 
         events.forEach(function (eventType) {
             window.addEventListener(eventType, initgoogleTagManager2, {once: true, passive: true})
         })
-    })([<?php if ($config->waitForUserInteraction() === false) : ?>'load', <?php endif; ?>'keydown', 'mouseover', 'scroll', 'touchstart', 'wheel']);
+    })(['load']);
 </script>
 
 <?php if ($config->isDebug()): ?>
     <script>
         window.AdPage_GTM_DEBUG = true;
-        window.AdPage_GTM_DEBUG_CLICKS = <?= $config->isDebugClicks() ? 'true' : 'false' ?>;
     </script>
 <?php endif; ?>

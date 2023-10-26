@@ -43,10 +43,6 @@ class Products implements TagInterface
         $productsData = [];
         $i = 1;
         foreach ($this->getCurrentCategoryProducts->getProducts() as $product) {
-            if ($this->config->getMaximumCategoryProducts() > 0 && $i > $this->config->getMaximumCategoryProducts()) {
-                break;
-            }
-
             $product->setCategory($this->getCurrentCategory->get());
             $productData = $this->productDataMapper->mapByProduct($product);
             $productData['quantity'] = 1;

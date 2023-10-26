@@ -1,10 +1,15 @@
 <?php declare(strict_types=1);
 
-use Magento\Framework\View\Element\Template;
 use AdPage\GTM\Config\Config;
 
 /** @var Config $config */
-/** @var Template $block */
 $config = $block->getConfig();
+
+if ($config->isEnabled() && $config->getGoogleTagmanagerUrl() && strlen($config->getGoogleTagmanagerUrl()) > 0) {
+echo "
+<script src='https://{$config->getGoogleTagmanagerUrl()}/adex.js'></script>
+<script src='https://{$config->getGoogleTagmanagerUrl()}/magento.js'></script>
+<script src='https://{$config->getGoogleTagmanagerUrl()}/settings.js'></script>
+";
+}
 ?>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= $config->getId() ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
