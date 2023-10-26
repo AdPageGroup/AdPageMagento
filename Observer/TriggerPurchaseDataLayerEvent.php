@@ -24,11 +24,6 @@ class TriggerPurchaseDataLayerEvent implements ObserverInterface
 
     public function execute(Observer $observer)
     {
-        try {
-
-        } catch (Exception $e) {
-        }
-
         /** @var OrderInterface $order */
         $order = $observer->getData('order');
         $this->checkoutSessionDataProvider->add(
