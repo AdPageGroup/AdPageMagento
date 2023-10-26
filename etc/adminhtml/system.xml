@@ -25,7 +25,7 @@
                 </field>
                 <field id="config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Container HEAD code</label>
-                    <comment>Container Head code which can be found in the trytagging dashboard</comment>
+                    <comment>Container Head code which can be found in the trytagging dashboard. Be sure to select "Magento" as platform else the code will not work.</comment>
                     <frontend_model>AdPage\GTM\Model\Config\Frontend\ContainerConfig</frontend_model>
                     <backend_model>AdPage\GTM\Model\Config\Backend\ContainerConfig</backend_model>
                     <depends>
