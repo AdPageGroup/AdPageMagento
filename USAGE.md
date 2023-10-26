@@ -6,7 +6,9 @@ your settings in Magento through **Admin Panel > Stores > Configuration > AdPage
 The extension has the following configuration options:
 
 - **Enabled**: When this is set to No, the extension does not work.
-- **Container HEAD code**: The HEAD code found in the trytagging dashboard.
+- **Container HEAD code**: The HEAD code found in the trytagging dashboard. (Excluding <!-- Google Tag Manager -->
+<script> and </script>
+<!-- End Google Tag Manager -->)
 - **Container URL**: The URL you connected in the trytagging dashboard.
 - **Debug**: Enable this for additional debugging in a logfile and the browser console.
 
