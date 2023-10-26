@@ -3,7 +3,7 @@
 ## Minimum requirements
 We are using strict requirements in the `composer.json` file, to make sure compatibility follows from the `composer` requirements. When you have questions regarding compatibility, install the extension via `composer`. If it works, it is because it is compatible. If it does not work, it is because it is not compatible. When a new version of Magento comes out and the `composer` command fails, while you think it should actually work, open a support ticket so we can look into this.
 
-## Instructions for using composer
+## Instructions for using composer (Not Yet Available)
 Use composer to install this extension. First make sure that Magento is installed via composer, and that there is a valid `composer.json` file present.
 
 Next, install our module using the following command:
@@ -30,7 +30,7 @@ Next, install the new module into Magento itself:
 ## Removing the extension
 If you are not the person having added this extension, we very strongly recommend you to have a technical person look into the deinstallation of our module. Deinstalling Magento modules is a technical matter, peanuts for a developer and our extension is not different in any way.
 
-If you have installed this extension via `composer`, simply follow the `composer` procedure again:
+If you have installed this extension via `composer`, simply follow the `composer` procedure again:  (Not Yet Available)
 
     composer remove adpage/gtm
 
