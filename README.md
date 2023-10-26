@@ -10,5 +10,4 @@ See `composer.json` for other requirements.
 ## See also
 - [Installation](INSTALL.md)
 - [Usage](USAGE.md)
-- [CHANGELOG](CHANGELOG.md)
 - [License](LICENSE.txt)
