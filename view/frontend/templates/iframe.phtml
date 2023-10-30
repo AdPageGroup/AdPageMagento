@@ -7,9 +7,9 @@ $config = $block->getConfig();
 
 if ($config->isEnabled() && $config->getGoogleTagmanagerUrl() && strlen($config->getGoogleTagmanagerUrl()) > 0) {
 echo "
-<script src='https://{$config->getGoogleTagmanagerUrl()}/adex.js'></script>
-<script src='https://{$config->getGoogleTagmanagerUrl()}/magento.js'></script>
-<script src='https://{$config->getGoogleTagmanagerUrl()}/settings.js'></script>
+<script async src='https://{$config->getGoogleTagmanagerUrl()}/adex.js'></script>
+<script async src='https://{$config->getGoogleTagmanagerUrl()}/magento.js'></script>
+<script async src='https://{$config->getGoogleTagmanagerUrl()}/settings.js'></script>
 ";
 }
 ?>
