@@ -25,10 +25,7 @@ var config = {
             },
             'Magento_Checkout/js/model/step-navigator': {
                 'AdPage_GTM/js/mixins/step-navigator-mixin': true
-            },
-            'mage/dropdown': {
-                'AdPage_GTM/js/mixins/minicart-mixin': true
-            },
+            }
         }
     }
 };
