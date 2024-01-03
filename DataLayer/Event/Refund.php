@@ -40,7 +40,7 @@ class Refund implements EventInterface
                 'currency' => $order->getOrderCurrencyCode(),
                 'value' => $this->priceFormatter->format((float)$order->getGrandTotal()),
                 'tax' => $this->priceFormatter->format((float)$order->getTaxAmount()),
-                'shipping' => $this->priceFormatter->format((float)$order->getShippingAmount()),
+                'shipping' => $this->priceFormatter->format((float)$order->getShippingInclTax()),
                 'coupon' => $order->getCouponCode(),
                 'items' => $this->orderItems->setOrder($order)->get()
             ]
