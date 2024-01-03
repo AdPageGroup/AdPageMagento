@@ -53,7 +53,7 @@ class OrderDataMapper
             'affiliation' => $this->config->getStoreName(),
             'revenue' => $this->priceFormatter->format($order->getGrandTotal()),
             'discount' => $this->priceFormatter->format((float)$order->getDiscountAmount()),
-            'shipping' => $this->priceFormatter->format((float)$order->getShippingAmount()),
+            'shipping' => $this->priceFormatter->format((float)$order->getShippingInclTax()),
             'tax' => $this->priceFormatter->format((float)$order->getTaxAmount()),
             'coupon' => $order->getCouponCode(),
             'date' => date("Y-m-d", strtotime($order->getCreatedAt())),
