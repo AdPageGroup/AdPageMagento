@@ -7,6 +7,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use Psr\Log\LoggerInterface;
+use AdPage\GTM\Logger\Debugger;
 
 class OrderSaveCommitAfter implements ObserverInterface
 {
