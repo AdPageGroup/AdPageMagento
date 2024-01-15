@@ -19,19 +19,22 @@ class PurchaseWebhookEvent
     private $config;
     private $orderItems;
     private $priceFormatter;
+    private LoggerInterface $logger;
 
     public function __construct(
         Json            $json,
         ClientFactory   $clientFactory,
         OrderItems      $orderItems,
         Config          $config,
-        PriceFormatter  $priceFormatter
+        PriceFormatter  $priceFormatter,
+        LoggerInterface $logger
     ) {
         $this->json = $json;
         $this->clientFactory = $clientFactory;
         $this->orderItems = $orderItems;
         $this->config = $config;
         $this->priceFormatter = $priceFormatter;
+        $this->logger = $logger;
     }
 
     private function call($event, $data)
@@ -45,9 +48,10 @@ class PurchaseWebhookEvent
 
             $url = $this->config->getGoogleTagmanagerUrl();
             if (!empty($url)) {
-                $client->post($url, $this->json->serialize($data));
+                $client->post('https://' . $url . '/order_created', $this->json->serialize($data));
             }
         } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
         }
         return $client->getStatus() == 200;
     }
