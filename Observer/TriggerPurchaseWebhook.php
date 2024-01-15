@@ -9,7 +9,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Psr\Log\LoggerInterface;
 use AdPage\GTM\Logger\Debugger;
 
-class OrderSaveCommitAfter implements ObserverInterface
+class TriggerPurchaseWebhook implements ObserverInterface
 {
     private $webhookEvent;
     private $debugger;
