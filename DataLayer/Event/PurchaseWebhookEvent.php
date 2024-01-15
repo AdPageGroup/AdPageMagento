@@ -6,11 +6,11 @@ namespace AdPage\GTM\DataLayer\Event;
 
 use Magento\Framework\HTTP\ClientFactory;
 use Magento\Framework\Serialize\Serializer\Json;
-use Magento\Sales\Model\Order;
 use AdPage\GTM\DataLayer\Tag\Order\OrderItems;
 use Magento\Sales\Api\Data\OrderInterface;
 use AdPage\GTM\Util\PriceFormatter;
 use AdPage\GTM\Config\Config;
+use Psr\Log\LoggerInterface;
 
 class PurchaseWebhookEvent
 {
@@ -45,11 +45,8 @@ class PurchaseWebhookEvent
         $client->addHeader('Accept', 'application/json');
 
         try {
-
             $url = $this->config->getGoogleTagmanagerUrl();
-            if (!empty($url)) {
-                $client->post('https://' . $url . '/order_created', $this->json->serialize($data));
-            }
+            $client->post('https://' . $url . '/order_created', $this->json->serialize($data));
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
         }
@@ -58,6 +55,10 @@ class PurchaseWebhookEvent
 
     public function purchase(OrderInterface $order, array $additionalInfo = [])
     {
+        if (!$this->config->isEnabled()) {
+            return;
+        }
+
         $data = [
             'user_data' => [],
             'ecommerce' => [
