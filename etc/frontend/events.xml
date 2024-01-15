@@ -32,7 +32,7 @@
         <observer name="AdPage_GTM::triggerPurchaseDataLayerEvent" instance="AdPage\GTM\Observer\TriggerPurchaseDataLayerEvent" />
     </event>
 
-    <event name="sales_order_save_commit_after">
+    <event name="sales_order_place_after">
         <observer name="AdPage_GTM::triggerPurchaseWebhook" instance="AdPage\GTM\Observer\TriggerPurchaseWebhook" />
     </event>
 </config>
