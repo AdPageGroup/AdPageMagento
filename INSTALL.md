@@ -13,9 +13,10 @@ Next, install our module using the following command:
 Next, install the new module into Magento itself:
 
     bin/magento module:enable AdPage_GTM
+    bin/magento setup:upgrade
     bin/magento cache:clean
 
-There is no need to run `setup:upgrade` because this module does not require a database upgrade.
+Please note `setup:upgrade` is required as of version 1.0.6 because we have added a new column in the database.
 
 ## Instructions for manual copy
 We recommend `composer` to install this package. Also, the method described here is not supported. If you are less knowledgeable on how to install extensions, use `composer` instead. If you want a manual copy instead, these are the steps.
@@ -25,6 +26,7 @@ Download a ZIP of this repository. Extract the files. Upload the files to the fo
 Next, install the new module into Magento itself:
 
     bin/magento module:enable AdPage_GTM
+    bin/magento setup:upgrade
     bin/magento cache:clean
 
 ## Removing the extension
