@@ -43,8 +43,16 @@ class PurchaseWebhookEvent
             return;
         }
 
+        $marketingData = [];
+
+        try {
+            $marketingData = $this->json->unserialize($order->getData('trytagging_marketing'));
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+        }
+
         $data = [
-            'marketing' => $order->getData('trytagging_marketing'),
+            'marketing' => $marketingData,
             'ecommerce' => [
                 'transaction_id' => $order->getIncrementId(),
                 'affiliation' => $this->config->getStoreName(),
