@@ -8,7 +8,7 @@ $config = $block->getConfig();
 if ($config->isEnabled() && $config->getGoogleTagmanagerUrl() && strlen($config->getGoogleTagmanagerUrl()) > 0) {
 echo "
 <script defer src='https://{$config->getGoogleTagmanagerUrl()}/adex.js'></script>
-<script defer src='http://localhost:4500/user-data-minified.js'></script>
+<script defer src='https://{$config->getGoogleTagmanagerUrl()}/user-data-minified.es.js'></script>
 <script defer src='https://{$config->getGoogleTagmanagerUrl()}/settings.js'></script>
 ";
 }
