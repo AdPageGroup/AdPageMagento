@@ -30,9 +30,9 @@ class TriggerPurchaseWebhook implements ObserverInterface
         /** @var OrderInterface $order */
         $order = $observer->getData('order');
 
-        $this->debugger->debug('TriggerPurchaseWebhook::execute(): has changed ', $order->dataHasChangedFor('total_paid'));
-        $this->debugger->debug('TriggerPurchaseWebhook::execute(): has grand total ', $order->getGrandTotal());
-        $this->debugger->debug('TriggerPurchaseWebhook::execute(): total paid ', $order->getTotalPaid());
+        $this->logger->critical('TriggerPurchaseWebhook::execute(): has changed ' . $order->dataHasChangedFor('total_paid'));
+        $this->logger->critical('TriggerPurchaseWebhook::execute(): has grand total ' . $order->getGrandTotal());
+        $this->logger->critical('TriggerPurchaseWebhook::execute(): total paid ' . $order->getTotalPaid());
 
         if (!$order->dataHasChangedFor('total_paid') || $order->getGrandTotal() > $order->getTotalPaid()) {
             return;
