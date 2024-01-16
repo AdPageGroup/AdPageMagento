@@ -8,7 +8,7 @@ interface OrderNotesInterface
     /**
      * Save custom data
      *
-     * @param string $jsonData
+     * @param array $jsonData
      * @return string
      */
     public function saveData($jsonData);
