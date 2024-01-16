@@ -37,30 +37,14 @@ class PurchaseWebhookEvent
         $this->logger = $logger;
     }
 
-    private function call($event, $data)
-    {
-        $data['event'] = $event;
-        $client = $this->clientFactory->create();
-        $client->addHeader('Content-Type', 'application/json');
-        $client->addHeader('Accept', 'application/json');
-
-        try {
-            $url = $this->config->getGoogleTagmanagerUrl();
-            $client->post('https://' . $url . '/order_created', $this->json->serialize($data));
-        } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
-        }
-        return $client->getStatus() == 200;
-    }
-
-    public function purchase(OrderInterface $order, array $additionalInfo = [])
+    public function purchase(OrderInterface $order)
     {
         if (!$this->config->isEnabled()) {
             return;
         }
 
         $data = [
-            'user_data' => [],
+            'marketing' => $order->getData('trytagging_marketing'),
             'ecommerce' => [
                 'transaction_id' => $order->getIncrementId(),
                 'affiliation' => $this->config->getStoreName(),
@@ -71,7 +55,20 @@ class PurchaseWebhookEvent
                 'coupon' => $order->getCouponCode(),
                 'items' => $this->orderItems->setOrder($order)->get()
             ]
-        ] + $additionalInfo;
-        $this->call('purchase', $data);
+        ];
+
+        $data['event'] = 'trytagging_purchase';
+        $client = $this->clientFactory->create();
+        $client->addHeader('Content-Type', 'application/json');
+        $client->addHeader('Accept', 'application/json');
+
+        try {
+            $url = $this->config->getGoogleTagmanagerUrl();
+            $client->post('https://' . $url . '/order_created', $this->json->serialize($data));
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+        }
+
+        return $client->getStatus() == 200;
     }
 }

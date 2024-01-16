@@ -28,16 +28,12 @@ class TriggerPurchaseWebhookEvent implements ObserverInterface
         /** @var OrderInterface $order */
         $order = $invoice->getOrder();
 
-        $this->logger->critical('TriggerPurchaseWebhook::execute(): has changed ' . $order->dataHasChangedFor('total_paid'));
-        $this->logger->critical('TriggerPurchaseWebhook::execute(): has grand total ' . $order->getGrandTotal());
-        $this->logger->critical('TriggerPurchaseWebhook::execute(): total paid ' . $order->getTotalPaid());
-
         if (!$order->dataHasChangedFor('total_paid') || $order->getGrandTotal() > $order->getTotalPaid()) {
             return;
         }
 
         try {
-            $this->webhookEvent->purchase($order, []);
+            $this->webhookEvent->purchase($order);
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
         }
