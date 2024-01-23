@@ -3,6 +3,7 @@
     <preference for="AdPage\GTM\Api\OrderCommentControllerInterface" type="AdPage\GTM\Controller\OrderCommentController"/>
     <preference for="AdPage\GTM\Api\CheckoutSessionDataProviderInterface" type="AdPage\GTM\SessionDataProvider\CheckoutSessionDataProvider"/>
     <preference for="AdPage\GTM\Api\CustomerSessionDataProviderInterface" type="AdPage\GTM\SessionDataProvider\CustomerSessionDataProvider"/>
+    <preference for="AdPage\GTM\Api\OrderNotesInterface" type="AdPage\GTM\Model\OrderNotes"/>
 
     <type name="AdPage\GTM\Logger\Debugger">
         <arguments>

@@ -39,6 +39,16 @@ define(['googleTagManagerLogger'], function (logger) {
             cleanEventData.device = window.taggingHelpers.getDeviceInfo();
         }
 
+        if (cleanEventData.event === 'trytagging_begin_checkout') {
+            // Post marketingObject to server
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/rest/V1/trytagging/save', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                jsonData: cleanEventData.marketing || {},
+            }));
+        }
+
         window.dataLayer.push(cleanEventData);
         window.AdPage_GTM_PAST_EVENTS.push(eventHash);
     };
