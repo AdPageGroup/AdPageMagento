@@ -15,9 +15,9 @@ use Magento\Customer\Api\GroupRepositoryInterface;
 use Magento\Customer\CustomerData\Customer as CustomerData;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use AdPage\GTM\Api\CustomerSessionDataProviderInterface;
 use AdPage\GTM\DataLayer\Mapper\CustomerDataMapper;
+use Exception;
 
 class AddDataToCustomerSection
 {
@@ -86,15 +86,25 @@ class AddDataToCustomerSection
             ];
         }
 
-        $customerId = $this->customerSession->getCustomerId();
-        $customer = $this->customerRepository->getById($customerId);
-        $customerGtmData = $this->customerDataMapper->mapByCustomer($customer);
-        $customerGroup = $this->groupRepository->getById($this->customerSession->getCustomerGroupId());
-        return array_merge([
-            'customerLoggedIn' => 1,
-            'customerId' => $customerId,
-            'customerGroupId' => $customerGroup->getId(),
-            'customerGroupCode' => strtoupper($customerGroup->getCode())
-        ], $customerGtmData);
+        try {
+            $customerId = $this->customerSession->getCustomerId();
+            $customer = $this->customerRepository->getById($customerId);
+            $customerGtmData = $this->customerDataMapper->mapByCustomer($customer);
+            $customerGroup = $this->groupRepository->getById($this->customerSession->getCustomerGroupId());
+            return array_merge([
+                'customerLoggedIn' => 1,
+                'customerId' => $customerId,
+                'customerGroupId' => $customerGroup->getId(),
+                'customerGroupCode' => strtoupper($customerGroup->getCode())
+            ], $customerGtmData);
+        } catch (Exception $e) {
+            return [
+                'customerLoggedIn' => 0,
+                'customerId' => 0,
+                'customerGroupId' => 0,
+                'customerGroupCode' => 'GUEST'
+            ];
+        }
+
     }
 }
