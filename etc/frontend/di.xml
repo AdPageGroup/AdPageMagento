@@ -4,10 +4,6 @@
         <plugin name="AdPage_GTM::addProductDetails" type="AdPage\GTM\Plugin\AddProductDetails"/>
     </type>
 
-    <type name="Magento\Customer\CustomerData\Customer">
-        <plugin name="AdPage_GTM::addDataToCustomerSection" type="AdPage\GTM\Plugin\AddDataToCustomerSection"/>
-    </type>
-
     <type name="Magento\Checkout\CustomerData\Cart">
         <plugin name="AdPage_GTM::addAdditionalDataToCartSection" type="AdPage\GTM\Plugin\AddDataToCartSection"/>
     </type>
