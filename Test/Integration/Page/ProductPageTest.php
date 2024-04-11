@@ -36,7 +36,7 @@ class ProductPageTest extends PageTestCase
         $body = $this->getResponse()->getBody();
         $this->assertStringContainsString($product->getName(), $body);
 
-        $block = $this->layout->getBlock('yireo_googletagmanager2.data-layer');
+        $block = $this->layout->getBlock('AdPage_GTM.data-layer');
         $this->assertNotEmpty($block);
 
         $this->assertDataLayerEquals('product', 'page_type');

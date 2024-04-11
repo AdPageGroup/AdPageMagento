@@ -58,7 +58,7 @@ class CheckoutOnepageSuccessTest extends PageTestCase
         $page->getLayout()->generateXml();
         $page->getLayout()->generateElements();
 
-        $block = $page->getLayout()->getBlock('yireo_googletagmanager2.data-layer');
+        $block = $page->getLayout()->getBlock('AdPage_GTM.data-layer');
         $this->assertNotFalse($block);
 
         $this->assertDataLayerEquals('Success Page', 'page_title');

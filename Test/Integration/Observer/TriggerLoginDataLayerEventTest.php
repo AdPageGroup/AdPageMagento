@@ -41,6 +41,6 @@ class TriggerLoginDataLayerEventTest extends TestCase
         $data = ObjectManager::getInstance()->get(CustomerSessionDataProvider::class)->get();
         $this->assertArrayHasKey('login_event', $data, var_export($data, true));
         $this->assertArrayHasKey('event', $data['login_event']);
-        $this->assertEquals('login', $data['login_event']['event']);
+        $this->assertEquals('trytagging_login', $data['login_event']['event']);
     }
 }

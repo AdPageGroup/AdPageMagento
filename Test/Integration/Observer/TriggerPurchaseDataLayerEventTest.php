@@ -30,7 +30,7 @@ class TriggerPurchaseDataLayerEventTest extends TestCase
         $data = ObjectManager::getInstance()->get(CheckoutSessionDataProvider::class)->get();
         $this->assertArrayHasKey('purchase_event', $data);
         $this->assertArrayHasKey('event', $data['purchase_event']);
-        $this->assertEquals('purchase', $data['purchase_event']['event']);
+        $this->assertEquals('trytagging_purchase', $data['purchase_event']['event']);
     }
 
 }

@@ -41,6 +41,6 @@ class TriggerLogoutDataLayerEventTest extends TestCase
         $data = ObjectManager::getInstance()->get(CustomerSessionDataProvider::class)->get();
         $this->assertArrayHasKey('logout_event', $data, var_export($data, true));
         $this->assertArrayHasKey('event', $data['logout_event']);
-        $this->assertEquals('logout', $data['logout_event']['event']);
+        $this->assertEquals('trytagging_logout', $data['logout_event']['event']);
     }
 }

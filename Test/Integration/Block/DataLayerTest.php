@@ -30,13 +30,13 @@ class DataLayerTest extends PageTestCase
         $layout->getUpdate()->addHandle('datalayer_default');
 
         $block = $layout->createBlock(Template::class);
-        $block->setNameInLayout('yireo_googletagmanager2.data-layer');
-        $block->setTemplate('Yireo_GoogleTagManager2::luma/data-layer.phtml');
+        $block->setNameInLayout('AdPage_GTM.data-layer');
+        $block->setTemplate('AdPage_GTM::luma/data-layer.phtml');
         $block->setData('data_layer_view_model', ObjectManager::getInstance()->get(DataLayer::class));
         $block->setData('config', ObjectManager::getInstance()->get(Config::class));
         $html = $block->toHtml();
 
-        $this->assertTrue((bool)strpos($html, 'yireoGoogleTagManagerPush'), 'Data layer not found in block output');
+        $this->assertTrue((bool)strpos($html, 'googleTagManagerPush'), 'Data layer not found in block output');
     }
 
     /**
@@ -56,10 +56,10 @@ class DataLayerTest extends PageTestCase
 
         $this->assertContainerInLayout('before.body.end');
 
-        $block = $this->layout->getBlock('yireo_googletagmanager2.data-layer');
-        $this->assertNotFalse($block, 'Block "yireo_googletagmanager2.data-layer" is empty');
+        $block = $this->layout->getBlock('AdPage_GTM.data-layer');
+        $this->assertNotFalse($block, 'Block "AdPage_GTM.data-layer" is empty');
 
         $array = $this->layout->getUpdate()->asArray();
-        $this->assertTrue((bool)strpos($body, 'yireoGoogleTagManagerPush'), 'Data layer not found in HTML body: '. var_export($array, true));
+        $this->assertTrue((bool)strpos($body, 'googleTagManagerPush'), 'Data layer not found in HTML body: '. var_export($array, true));
     }
 }

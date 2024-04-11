@@ -58,7 +58,7 @@ class CategoryPageTest extends PageTestCase
         $this->assertInstanceOf(ListProduct::class, $productListBlock);
         $this->assertTrue($productListBlock->getLoadedProductCollection()->count() > 0);
 
-        $block = $this->layout->getBlock('yireo_googletagmanager2.data-layer');
+        $block = $this->layout->getBlock('AdPage_GTM.data-layer');
         $this->assertNotEmpty($block);
 
         $this->assertDataLayerEquals($category->getName(), 'category_name');
