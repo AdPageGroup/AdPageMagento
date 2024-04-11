@@ -15,8 +15,8 @@ class ModuleTest extends TestCase
 
     public function testIfModuleIsEnabled()
     {
-        $this->assertModuleIsEnabled('Yireo_GoogleTagManager2');
-        $this->assertModuleIsRegistered('Yireo_GoogleTagManager2');
-        $this->assertModuleIsRegisteredForReal('Yireo_GoogleTagManager2');
+        $this->assertModuleIsEnabled('AdPage_GTM');
+        $this->assertModuleIsRegistered('AdPage_GTM');
+        $this->assertModuleIsRegisteredForReal('AdPage_GTM');
     }
 }

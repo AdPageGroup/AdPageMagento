@@ -19,7 +19,7 @@ class AddDataToCustomerSectionTest extends TestCase
         $this->assertInterceptorPluginIsRegistered(
             Customer::class,
             AddDataToCustomerSection::class,
-            'Yireo_GoogleTagManager2::addDataToCustomerSection'
+            'AdPage_GTM::addDataToCustomerSection'
         );
     }
 }

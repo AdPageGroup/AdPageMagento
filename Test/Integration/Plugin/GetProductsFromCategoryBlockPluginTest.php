@@ -19,7 +19,7 @@ class GetProductsFromCategoryBlockPluginTest extends TestCase
         $this->assertInterceptorPluginIsRegistered(
             ListProductBlock::class,
             GetProductsFromCategoryBlockPlugin::class,
-            'Yireo_GoogleTagManager2::getProductsFromCategoryBlockPlugin'
+            'AdPage_GTM::getProductsFromCategoryBlockPlugin'
         );
     }
 }

@@ -18,9 +18,8 @@ class DataLayerTest extends PageTestCase
     use AssertContainerInLayout;
 
     /**
-     * @magentoConfigFixture current_store googletagmanager2/settings/enabled 1
-     * @magentoConfigFixture current_store googletagmanager2/settings/method 1
-     * @magentoConfigFixture current_store googletagmanager2/settings/id test
+     * @magentoConfigFixture current_store GTM/settings/enabled 1
+     * @magentoConfigFixture current_store GTM/settings/serverside_gtm_url gtm.tryforwarder.com
      */
     public function testValidBlockContent()
     {
@@ -40,9 +39,9 @@ class DataLayerTest extends PageTestCase
     }
 
     /**
-     * @magentoConfigFixture current_store googletagmanager2/settings/enabled 1
-     * @magentoConfigFixture current_store googletagmanager2/settings/method 1
-     * @magentoConfigFixture current_store googletagmanager2/settings/id test
+     * @magentoConfigFixture current_store GTM/settings/enabled 1
+     * @magentoConfigFixture current_store GTM/settings/method 1
+     * @magentoConfigFixture current_store GTM/settings/id test
      */
     public function testValidBodyContent()
     {

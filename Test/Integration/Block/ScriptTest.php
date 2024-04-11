@@ -13,9 +13,8 @@ class ScriptTest extends PageTestCase
     use AssertContainerInLayout;
 
     /**
-     * @magentoConfigFixture current_store googletagmanager2/settings/enabled 1
-     * @magentoConfigFixture current_store googletagmanager2/settings/method 1
-     * @magentoConfigFixture current_store googletagmanager2/settings/id test
+     * @magentoConfigFixture current_store GTM/settings/enabled 1
+     * @magentoConfigFixture current_store GTM/settings/serverside_gtm_url gtm.tryforwarder.com
      */
     public function testValidBlockContent()
     {
@@ -27,7 +26,7 @@ class ScriptTest extends PageTestCase
         $this->dispatch('/');
 
         $this->assertContainerInLayout('before.body.end');
-        $this->assertStringContainsString('Yireo_GoogleTagManager2', $this->layout->getUpdate()->asString());
+        $this->assertStringContainsString('AdPage_GTM', $this->layout->getUpdate()->asString());
 
         $body = $this->getResponse()->getBody(); // @phpstan-ignore-line
         $this->assertTrue((bool)strpos($body, 'yireoGoogleTagManager'), 'Script not found in HTML body: ' . $body);

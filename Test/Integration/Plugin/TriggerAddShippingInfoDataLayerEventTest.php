@@ -19,7 +19,7 @@ class TriggerAddShippingInfoDataLayerEventTest extends TestCase
         $this->assertInterceptorPluginIsRegistered(
             ShippingInformationManagementInterface::class,
             TriggerAddShippingInfoDataLayerEvent::class,
-            'Yireo_GoogleTagManager2::triggerAddShippingInfoDataLayerEvent'
+            'AdPage_GTM::triggerAddShippingInfoDataLayerEvent'
         );
     }
 }

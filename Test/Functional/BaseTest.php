@@ -12,7 +12,7 @@ class BaseTest extends TestCase
     public function testIfModuleIsEnabled()
     {
         $componentRegistrar = ObjectManager::getInstance()->get(ComponentRegistrar::class);
-        $path = $componentRegistrar->getPath('module', 'Yireo_GoogleTagManager2');
+        $path = $componentRegistrar->getPath('module', 'AdPage_GTM');
         $this->assertTrue(file_exists($path.'/registration.php'));
     }
 }

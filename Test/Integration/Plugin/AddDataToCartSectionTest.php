@@ -19,7 +19,7 @@ class AddDataToCartSectionTest extends TestCase
         $this->assertInterceptorPluginIsRegistered(
             Cart::class,
             AddDataToCartSection::class,
-            'Yireo_GoogleTagManager2::addAdditionalDataToCartSection'
+            'AdPage_GTM::addAdditionalDataToCartSection'
         );
     }
 }
