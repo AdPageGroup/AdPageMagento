@@ -78,7 +78,7 @@ class PageTestCase extends AbstractController
 
     protected function assertEnabledFlagIsWorking()
     {
-        $this->assertStoreConfigValueEquals(1, 'googletagmanager2/settings/enabled', 'store');
+        $this->assertStoreConfigValueEquals(1, 'GTM/settings/enabled', 'store');
     }
 
     protected function assertRequestActionName(string $expectedActionName)
