@@ -3,29 +3,31 @@
 namespace AdPage\GTM\DataLayer\Event;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\StateException;
+use Magento\Quote\Api\Data\CartInterface;
+use Magento\Quote\Api\Data\ShippingMethodInterface;
 use Magento\Quote\Api\ShippingMethodManagementInterface;
-use Magento\Quote\Model\Quote as Cart;
 use AdPage\GTM\Api\Data\EventInterface;
 use AdPage\GTM\DataLayer\Tag\Cart\CartItems;
 
 class AddShippingInfo implements EventInterface
 {
-    private Cart $cart;
     private CartItems $cartItems;
     private ShippingMethodManagementInterface $shippingMethodManagement;
     private CheckoutSession $checkoutSession;
 
     /**
-     * @param Cart $cart
      * @param CartItems $cartItems
+     * @param ShippingMethodManagementInterface $shippingMethodManagement
+     * @param CheckoutSession $checkoutSession
      */
     public function __construct(
-        Cart $cart,
         CartItems $cartItems,
         ShippingMethodManagementInterface $shippingMethodManagement,
         CheckoutSession $checkoutSession
     ) {
-        $this->cart = $cart;
         $this->cartItems = $cartItems;
         $this->shippingMethodManagement = $shippingMethodManagement;
         $this->checkoutSession = $checkoutSession;
@@ -36,13 +38,17 @@ class AddShippingInfo implements EventInterface
      */
     public function get(): array
     {
-        $shippingMethod = $this->cart->getShippingAddress()->getShippingMethod();
-        
-        if (empty($shippingMethod) && $this->checkoutSession->hasQuote()) {
-            $quoteId = $this->checkoutSession->getQuote()->getId();
-            $shippingMethod = $this->getShippingMethodFromQuote((int)$quoteId);
+        if (false === $this->checkoutSession->hasQuote()) {
+            return [];
         }
 
+        try {
+            $quote = $this->checkoutSession->getQuote();
+        } catch (NoSuchEntityException|LocalizedException $e) {
+            return [];
+        }
+
+        $shippingMethod = $this->getShippingMethodFromQuote($quote);
         if (empty($shippingMethod)) {
             return [];
         }
@@ -57,16 +63,27 @@ class AddShippingInfo implements EventInterface
     }
 
     /**
-     * @param int $quoteId
+     * @param CartInterface $quote
      * @return string|null
      */
-    public function getShippingMethodFromQuote(int $quoteId): ?string
+    public function getShippingMethodFromQuote(CartInterface $quote): ?string
     {
-        $shippingMethod = $this->shippingMethodManagement->get($quoteId);
-        if (empty($shippingMethod)) {
-            return null;
+        try {
+            // @phpstan-ignore-next-line
+            $shippingMethod = $this->shippingMethodManagement->get($quote->getId());
+            if ($shippingMethod instanceof ShippingMethodInterface) {
+                return $shippingMethod->getCarrierCode().'_'.$shippingMethod->getMethodCode();
+            }
+        } catch (NoSuchEntityException $e) {
+        } catch (StateException $e) {
         }
 
-        return $shippingMethod->getCarrierCode().'_'.$shippingMethod->getMethodCode();
+        try {
+            // @phpstan-ignore-next-line
+            return $quote->getShippingAddress()->getShippingMethod();
+        } catch (NoSuchEntityException $e) {
+        }
+
+        return null;
     }
 }
