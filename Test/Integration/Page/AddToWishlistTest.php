@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace AdPage\GTM\Test\Integration\Page;
+namespace Yireo\GoogleTagManager2\Test\Integration\Page;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Customer\CustomerData\SectionPool;
@@ -9,8 +9,8 @@ use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Wishlist\Controller\WishlistProviderInterface;
 use Magento\Wishlist\Model\Wishlist;
-use AdPage\GTM\Test\Integration\FixtureTrait\CreateCustomer;
-use AdPage\GTM\Test\Integration\PageTestCase;
+use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateCustomer;
+use Yireo\GoogleTagManager2\Test\Integration\PageTestCase;
 
 class AddToWishlistTest extends PageTestCase
 {

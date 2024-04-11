@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace AdPage\GTM\Test\Integration\SessionDataProvider;
+namespace Yireo\GoogleTagManager2\Test\Integration\SessionDataProvider;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Serialize\SerializerInterface;
 use Magento\TestFramework\TestCase\AbstractController;
-use AdPage\GTM\SessionDataProvider\CustomerSessionDataProvider;
+use Yireo\GoogleTagManager2\SessionDataProvider\CustomerSessionDataProvider;
 
 class CustomerSessionDataProviderTest extends AbstractController
 {
