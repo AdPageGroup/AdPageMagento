@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration;
+namespace AdPage\GTM\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\AssertModuleIsEnabled;

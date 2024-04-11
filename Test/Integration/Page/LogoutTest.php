@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Page;
+namespace AdPage\GTM\Test\Integration\Page;
 
 use Magento\Customer\CustomerData\SectionPool;
-use Yireo\GoogleTagManager2\SessionDataProvider\CustomerSessionDataProvider;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateCustomer;
-use Yireo\GoogleTagManager2\Test\Integration\PageTestCase;
+use AdPage\GTM\SessionDataProvider\CustomerSessionDataProvider;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateCustomer;
+use AdPage\GTM\Test\Integration\PageTestCase;
 
 class LogoutTest extends PageTestCase
 {

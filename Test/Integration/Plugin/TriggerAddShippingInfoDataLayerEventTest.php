@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Plugin;
+namespace AdPage\GTM\Test\Integration\Plugin;
 
 use Magento\Checkout\Api\ShippingInformationManagementInterface;
 use PHPUnit\Framework\TestCase;
-use Yireo\GoogleTagManager2\Plugin\TriggerAddShippingInfoDataLayerEvent;
+use AdPage\GTM\Plugin\TriggerAddShippingInfoDataLayerEvent;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\AssertInterceptorPluginIsRegistered;
 
 /**

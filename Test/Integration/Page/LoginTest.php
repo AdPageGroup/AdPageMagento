@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Page;
+namespace AdPage\GTM\Test\Integration\Page;
 
 use Magento\Customer\CustomerData\SectionPool;
 use Magento\Framework\App\Request\Http as HttpRequest;
 use Magento\Framework\Data\Form\FormKey;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateCustomer;
-use Yireo\GoogleTagManager2\Test\Integration\PageTestCase;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateCustomer;
+use AdPage\GTM\Test\Integration\PageTestCase;
 
 class LoginTest extends PageTestCase
 {

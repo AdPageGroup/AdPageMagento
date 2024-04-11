@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Observer;
+namespace AdPage\GTM\Test\Integration\Observer;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Event\ManagerInterface;
 use PHPUnit\Framework\TestCase;
-use Yireo\GoogleTagManager2\SessionDataProvider\CheckoutSessionDataProvider;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\GetOrder;
+use AdPage\GTM\SessionDataProvider\CheckoutSessionDataProvider;
+use AdPage\GTM\Test\Integration\FixtureTrait\GetOrder;
 
 class TriggerPurchaseDataLayerEventTest extends TestCase
 {

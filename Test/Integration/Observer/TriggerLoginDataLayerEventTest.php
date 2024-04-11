@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Observer;
+namespace AdPage\GTM\Test\Integration\Observer;
 
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\ObjectManager;
@@ -10,10 +10,10 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use PHPUnit\Framework\TestCase;
-use Yireo\GoogleTagManager2\SessionDataProvider\CheckoutSessionDataProvider;
-use Yireo\GoogleTagManager2\SessionDataProvider\CustomerSessionDataProvider;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateCustomer;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\GetCustomer;
+use AdPage\GTM\SessionDataProvider\CheckoutSessionDataProvider;
+use AdPage\GTM\SessionDataProvider\CustomerSessionDataProvider;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateCustomer;
+use AdPage\GTM\Test\Integration\FixtureTrait\GetCustomer;
 
 class TriggerLoginDataLayerEventTest extends TestCase
 {

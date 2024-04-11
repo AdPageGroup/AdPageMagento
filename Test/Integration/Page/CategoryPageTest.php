@@ -2,7 +2,7 @@
 
 // phpcs:ignoreFile -- Too many issues, lol
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Page;
+namespace AdPage\GTM\Test\Integration\Page;
 
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\CategoryInterface;
@@ -10,10 +10,10 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Framework\Registry;
 use Magento\Framework\View\LayoutInterface;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateCategory;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateProduct;
-use Yireo\GoogleTagManager2\Test\Integration\PageTestCase;
-use Yireo\GoogleTagManager2\Util\GetCurrentCategoryProducts;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateCategory;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateProduct;
+use AdPage\GTM\Test\Integration\PageTestCase;
+use AdPage\GTM\Util\GetCurrentCategoryProducts;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\Layout\AssertHandleInLayout;
 
 /**

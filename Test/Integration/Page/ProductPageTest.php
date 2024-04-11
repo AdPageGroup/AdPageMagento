@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Page;
+namespace AdPage\GTM\Test\Integration\Page;
 
 use Magento\Catalog\Api\Data\CategoryInterface;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateCategory;
-use Yireo\GoogleTagManager2\Test\Integration\FixtureTrait\CreateProduct;
-use Yireo\GoogleTagManager2\Test\Integration\PageTestCase;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateCategory;
+use AdPage\GTM\Test\Integration\FixtureTrait\CreateProduct;
+use AdPage\GTM\Test\Integration\PageTestCase;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\Layout\AssertHandleInLayout;
 
 /**

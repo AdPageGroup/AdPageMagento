@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Page;
+namespace AdPage\GTM\Test\Integration\Page;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
-use Yireo\GoogleTagManager2\Test\Integration\PageTestCase;
+use AdPage\GTM\Test\Integration\PageTestCase;
 
 class CheckoutOnepageSuccessTest extends PageTestCase
 {

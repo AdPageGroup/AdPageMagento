@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Plugin;
+namespace AdPage\GTM\Test\Integration\Plugin;
 
 use Magento\Customer\CustomerData\Customer;
 use PHPUnit\Framework\TestCase;
-use Yireo\GoogleTagManager2\Plugin\AddDataToCustomerSection;
+use AdPage\GTM\Plugin\AddDataToCustomerSection;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\AssertInterceptorPluginIsRegistered;
 
 /**

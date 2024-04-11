@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Yireo\GoogleTagManager2\Test\Integration\Plugin;
+namespace AdPage\GTM\Test\Integration\Plugin;
 
 use Magento\Catalog\Block\Product\ListProduct as ListProductBlock;
 use PHPUnit\Framework\TestCase;
-use Yireo\GoogleTagManager2\Plugin\GetProductsFromCategoryBlockPlugin;
+use AdPage\GTM\Plugin\GetProductsFromCategoryBlockPlugin;
 use Yireo\IntegrationTestHelper\Test\Integration\Traits\AssertInterceptorPluginIsRegistered;
 
 /**
