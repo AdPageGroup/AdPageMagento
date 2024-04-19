@@ -29,6 +29,6 @@ class ScriptTest extends PageTestCase
         $this->assertStringContainsString('AdPage_GTM', $this->layout->getUpdate()->asString());
 
         $body = $this->getResponse()->getBody(); // @phpstan-ignore-line
-        $this->assertTrue((bool)strpos($body, 'yireoGoogleTagManager'), 'Script not found in HTML body: ' . $body);
+        $this->assertTrue((bool)strpos($body, 'gtm.tryforwarder.com'), 'Script not found in HTML body: ' . $body);
     }
 }

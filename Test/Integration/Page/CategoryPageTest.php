@@ -49,7 +49,7 @@ class CategoryPageTest extends PageTestCase
 
         $body = $this->getResponse()->getBody();
         $this->assertStringContainsString($category->getName(), $body);
-        $this->assertStringContainsString('"view_item_list"', $body);
+        $this->assertStringContainsString('"trytagging_view_item_list"', $body);
 
         $productListBlock = $this->layout->getBlock('category.products.list');
         $productListBlock->setCollection($products);
@@ -64,7 +64,7 @@ class CategoryPageTest extends PageTestCase
         $this->assertDataLayerEquals(count($productListBlock->getLoadedProductCollection()), 'category_size');
         $this->assertDataLayerEquals('category', 'page_type');
 
-        $event = $this->getEventFromDataLayerEvents('view_item_list_event', 'view_item_list');
+        $event = $this->getEventFromDataLayerEvents('view_item_list_event', 'trytagging_view_item_list');
         $this->assertArrayHasKey('ecommerce', $event);
         $this->assertArrayHasKey('items', $event['ecommerce']);
 
