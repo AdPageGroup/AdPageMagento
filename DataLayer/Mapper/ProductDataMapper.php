@@ -54,12 +54,7 @@ class ProductDataMapper
     public function mapByProduct(ProductInterface $product): array
     {
         $prefix = 'item_';
-        $productData = [];
-        $productData['item_id'] = $product->getSku();
-        $productData['item_sku'] = $product->getSku();
-        $productData['magento_sku'] = $product->getSku();
-        $productData['magento_id'] = $product->getId();
-
+        $productData = [];        
         $productFields = $this->getProductFields();
         foreach ($productFields as $productAttributeCode) {
             $dataLayerKey = $prefix . $productAttributeCode;
@@ -70,6 +65,11 @@ class ProductDataMapper
 
             $productData[$dataLayerKey] = $attributeValue;
         }
+
+        $productData['item_id'] = $product->getSku();
+        $productData['item_sku'] = $product->getSku();
+        $productData['magento_sku'] = $product->getSku();
+        $productData['magento_id'] = $product->getId();
 
         try {
             $category = $this->categoryProvider->getFirstByProduct($product);
