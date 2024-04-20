@@ -97,7 +97,7 @@ class ProductDataMapper
      */
     private function getProductFields(): array
     {
-        return array_filter(['id', 'name']);
+        return array_filter(['id', 'name', 'brand']);
     }
 
     /**

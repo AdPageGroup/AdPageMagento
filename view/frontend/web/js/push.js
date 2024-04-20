@@ -50,6 +50,14 @@ define(["googleTagManagerLogger"], function (logger) {
       cleanEventData.device = window.taggingHelpers.getDeviceInfo();
     }
 
+    if (cleanEventData.marketing) {
+      const expires = new Date();
+      expires.setTime(expires.getTime() + 7 * 24 * 60 * 60 * 1000);
+      document.cookie = `trytagging_user_data=${btoa(
+        JSON.stringify(cleanEventData.marketing)
+      )};expires=${expires.toUTCString()};path=/`;
+    }
+
     if (
       cleanEventData.event === "trytagging_begin_checkout" ||
       cleanEventData.event === "trytagging_view_cart" ||
