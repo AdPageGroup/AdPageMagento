@@ -53,6 +53,16 @@ class Config implements ArgumentInterface
     }
 
     /**
+     * Checks if the module should place the GTM code or it is done by the user
+     * 
+     * @return bool 
+     */
+    public function isPlacedByPlugin(): bool
+    {
+        return (bool)$this->getModuleConfigValue('placed_by_plugin', true);
+    }
+
+    /**
      *
      * Get the Google tag manager url. Defaults to googletagmanager.com. when field is filled return that url.
      *

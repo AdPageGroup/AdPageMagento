@@ -5,7 +5,7 @@ use AdPage\GTM\Config\Config;
 /** @var Config $config */
 $config = $block->getConfig();
 
-if ($config->isEnabled() && $config->getGoogleTagmanagerUrl() && strlen($config->getGoogleTagmanagerUrl()) > 0) {
+if ($config->isEnabled() && $config->getGoogleTagmanagerUrl() && strlen($config->getGoogleTagmanagerUrl()) > 0 && $config->isPlacedByPlugin()) {
 echo "
 <script defer src='https://{$config->getGoogleTagmanagerUrl()}/adex.js'></script>
 <script defer src='https://{$config->getGoogleTagmanagerUrl()}/user-data-minified.es.js'></script>

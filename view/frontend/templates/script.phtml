@@ -16,7 +16,11 @@ $config = $block->getConfig();
                 window.removeEventListener(eventType, initgoogleTagManager2);
             });
 
-            <?= $config->getConfig() ?>
+            <?php
+                if ($config->isEnabled() && $conifg->isPlacedByPlugin()) {
+                    echo $config->getConfig();
+                }
+            ?>
         }
 
         events.forEach(function (eventType) {
