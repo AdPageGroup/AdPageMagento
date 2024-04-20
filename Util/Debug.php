@@ -57,7 +57,7 @@ class Debug
             $string .= ': ' . var_export($variable, true);
         }
 
-        $this->logger->info('Yireo_GoogleTagManager: ' . $string);
+        $this->logger->info('AdPage_GTM: ' . $string);
 
         return true;
     }

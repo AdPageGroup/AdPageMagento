@@ -3,7 +3,6 @@
 namespace AdPage\GTM\DataLayer\Mapper;
 
 use Magento\Catalog\Api\Data\ProductInterface;
-use Magento\Catalog\Model\Product;
 use Magento\Catalog\Pricing\Price\FinalPrice;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -11,56 +10,51 @@ use AdPage\GTM\Api\Data\ProductTagInterface;
 use AdPage\GTM\Api\Data\TagInterface;
 use AdPage\GTM\Config\Config;
 use AdPage\GTM\Util\Attribute\GetAttributeValue;
-use AdPage\GTM\Util\GetCategoryFromProduct;
 use AdPage\GTM\Util\PriceFormatter;
+use AdPage\GTM\Util\CategoryProvider;
 
 class ProductDataMapper
 {
     private Config $config;
     private GetAttributeValue $getAttributeValue;
-    private GetCategoryFromProduct $getCategoryFromProduct;
+    private CategoryProvider $categoryProvider;
     private PriceFormatter $priceFormatter;
 
     private array $dataLayerMapping;
-    
+
     private int $counter = 0;
 
     /**
      * @param Config $config
      * @param GetAttributeValue $getAttributeValue
-     * @param GetCategoryFromProduct $getCategoryFromProduct
+     * @param CategoryProvider $categoryProvider
      * @param PriceFormatter $priceFormatter
      * @param array $dataLayerMapping
      */
     public function __construct(
         Config $config,
         GetAttributeValue $getAttributeValue,
-        GetCategoryFromProduct $getCategoryFromProduct,
+        CategoryProvider $categoryProvider,
         PriceFormatter $priceFormatter,
         array $dataLayerMapping = []
     ) {
         $this->config = $config;
         $this->getAttributeValue = $getAttributeValue;
-        $this->getCategoryFromProduct = $getCategoryFromProduct;
+        $this->categoryProvider = $categoryProvider;
         $this->priceFormatter = $priceFormatter;
         $this->dataLayerMapping = $dataLayerMapping;
     }
 
     /**
-     * @param Product $product
+     * @param ProductInterface $product
      * @return array
      * @throws LocalizedException
      * @throws NoSuchEntityException
      */
-    public function mapByProduct(Product $product): array
+    public function mapByProduct(ProductInterface $product): array
     {
         $prefix = 'item_';
-        $productData = [];
-        $productData['item_id'] = $product->getSku();
-        $productData['item_sku'] = $product->getSku();
-        $productData['magento_sku'] = $product->getSku();
-        $productData['magento_id'] = $product->getId();
-
+        $productData = [];        
         $productFields = $this->getProductFields();
         foreach ($productFields as $productAttributeCode) {
             $dataLayerKey = $prefix . $productAttributeCode;
@@ -72,19 +66,27 @@ class ProductDataMapper
             $productData[$dataLayerKey] = $attributeValue;
         }
 
+        $productData['item_id'] = $product->getSku();
+        $productData['item_sku'] = $product->getSku();
+        $productData['magento_sku'] = $product->getSku();
+        $productData['magento_id'] = $product->getId();
+
         try {
-            $productData[$prefix . 'list_id'] = $this->getCategoryFromProduct->get($product)->getId();
-            $productData[$prefix . 'list_name'] = $this->getCategoryFromProduct->get($product)->getName();
+            $category = $this->categoryProvider->getFirstByProduct($product);
+            $productData[$prefix . 'list_id'] = $category->getId();
+            $productData[$prefix . 'list_name'] = $category->getName();
         } catch (NoSuchEntityException $noSuchEntityException) {
         }
 
         $productData['price'] = $this->priceFormatter->format(
+            // @phpstan-ignore-next-line
             (float)$product->getPriceInfo()->getPrice(FinalPrice::PRICE_CODE)->getValue()
         );
+
         $productData = $this->attachCategoriesData($product, $productData);
         $productData = $this->parseDataLayerMapping($product, $productData);
         $productData['index'] = $this->counter++;
-        
+
         // @todo: Add "variant" reference to Configurable Product
 
         return $productData;
@@ -95,7 +97,7 @@ class ProductDataMapper
      */
     private function getProductFields(): array
     {
-        return array_filter(['id', 'name']);
+        return array_filter(['id', 'name', 'brand']);
     }
 
     /**
@@ -106,7 +108,7 @@ class ProductDataMapper
     private function attachCategoriesData(ProductInterface $product, array $data): array
     {
         try {
-            $categories = $this->getCategoryFromProduct->getAll($product);
+            $categories = $this->categoryProvider->getAllByProduct($product);
         } catch (NoSuchEntityException $e) {
             return $data;
         }

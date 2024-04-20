@@ -36,10 +36,22 @@
                     <label>Container URL</label>
                     <comment><![CDATA[<span>Enter the container url without https://<span><br/>
                     <b>Keep in mind</b>; This must much with the container config you are installing. ]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field>
                 <field id="debug" type="select" translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Debug</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="choose_script_placement" type="select" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Choose script placement</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[<span>If you want to control on where the scripts are placed you can enable this option. Then the plugin will not load the files and you have to do it on your own.<span><br/>
+                    <b>NOTE</b>; If all necessary scripts are not included, tracking will not function. ]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>

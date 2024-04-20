@@ -16,6 +16,40 @@ define([
 ], function ($, _, Component, customerData, logger, pusher, ko) {
     'use strict';
 
+    var moduleConfig = {};
+
+    var isDisabled = function () {
+        if (isValidConfig() === false) {
+            return true;
+        }
+
+        return isAllowedByCookieRestrictionMode() === false;
+    };
+
+    var isValidConfig = function () {
+        if (typeof moduleConfig.id === 'undefined' || !moduleConfig.id) {
+            logger('Warning: Identifier empty, terminating GTM initialization.');
+            return false;
+        }
+
+        return true;
+    };
+
+    var isAllowedByCookieRestrictionMode = function () {
+        if (!moduleConfig.cookie_restriction_mode) {
+            return true;
+        }
+
+        const parsedCookie = JSON.parse($.cookie(moduleConfig.cookie_restriction_mode) || '{}');
+
+        return parsedCookie[moduleConfig.website_id] || false;
+    };
+
+    var isLoggedIn = function () {
+        var customer = customerData.get('customer');
+        return customer() && customer().firstname;
+    };
+
     var processGtmDataFromSection = function (sectionName) {
         const eventData = getGtmDataFromSection(sectionName);
         if (true === isEmpty(eventData)) {

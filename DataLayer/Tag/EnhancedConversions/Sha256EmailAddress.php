@@ -6,7 +6,6 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use AdPage\GTM\Api\Data\TagInterface;
-use AdPage\GTM\Config\Config;
 
 class Sha256EmailAddress implements TagInterface
 {

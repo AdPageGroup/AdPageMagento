@@ -37,6 +37,18 @@ class GetProductsFromCategoryBlockPlugin
         ListProduct $listProductBlock,
         AbstractCollection $collection
     ): AbstractCollection {
+        $maximumCategoryProducts = 50;
+        $i = 0;
+        foreach ($collection as $product) {
+            if ($i > $maximumCategoryProducts) {
+                break;
+            }
+
+            $this->getCurrentCategoryProducts->addProduct($product);
+            $i++;
+        }
+
+        $this->categorySize->setSize($collection->count());
         return $collection;
     }
 }

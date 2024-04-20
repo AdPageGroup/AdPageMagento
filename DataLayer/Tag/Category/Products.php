@@ -3,7 +3,6 @@
 namespace AdPage\GTM\DataLayer\Tag\Category;
 
 use Magento\Framework\Exception\NoSuchEntityException;
-use AdPage\GTM\Config\Config;
 use AdPage\GTM\Api\Data\TagInterface;
 use AdPage\GTM\Util\GetCurrentCategory;
 use AdPage\GTM\Util\GetCurrentCategoryProducts;
@@ -14,24 +13,20 @@ class Products implements TagInterface
     private GetCurrentCategoryProducts $getCurrentCategoryProducts;
     private GetCurrentCategory $getCurrentCategory;
     private ProductDataMapper $productDataMapper;
-    private Config $config;
 
     /**
      * @param GetCurrentCategoryProducts $getCurrentCategoryProducts
      * @param GetCurrentCategory $getCurrentCategory
      * @param ProductDataMapper $productDataMapper
-     * @param Config $config
      */
     public function __construct(
         GetCurrentCategoryProducts $getCurrentCategoryProducts,
         GetCurrentCategory $getCurrentCategory,
-        ProductDataMapper $productDataMapper,
-        Config $config
+        ProductDataMapper $productDataMapper
     ) {
         $this->getCurrentCategoryProducts = $getCurrentCategoryProducts;
         $this->getCurrentCategory = $getCurrentCategory;
         $this->productDataMapper = $productDataMapper;
-        $this->config = $config;
     }
 
     /**

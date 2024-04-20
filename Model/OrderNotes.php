@@ -25,6 +25,7 @@ class OrderNotes implements OrderNotesInterface
     public function saveData($jsonData)
     {
         try {
+            $jsonData['ip'] = $_SERVER['REMOTE_ADDR'];
             $this->checkoutSession->setData('trytagging_marketing', $this->json->serialize($jsonData));
             return 'Data saved in checkout session';
         } catch (\Exception $e) {

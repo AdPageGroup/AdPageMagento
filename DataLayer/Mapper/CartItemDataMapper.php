@@ -2,7 +2,6 @@
 
 namespace AdPage\GTM\DataLayer\Mapper;
 
-use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -10,27 +9,29 @@ use Magento\Quote\Api\Data\CartItemInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Tax\Model\Config;
 use AdPage\GTM\Util\PriceFormatter;
+use AdPage\GTM\Util\ProductProvider;
 
 class CartItemDataMapper
 {
     private ProductDataMapper $productDataMapper;
-    private ProductRepositoryInterface $productRepository;
+    private ProductProvider $productProvider;
     private PriceFormatter $priceFormatter;
     private ScopeConfigInterface $scopeConfig;
 
     /**
      * @param ProductDataMapper $productDataMapper
-     * @param ProductRepositoryInterface $productRepository
+     * @param ProductProvider $productProvider
      * @param PriceFormatter $priceFormatter
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         ProductDataMapper $productDataMapper,
-        ProductRepositoryInterface $productRepository,
+        ProductProvider $productProvider,
         PriceFormatter $priceFormatter,
         ScopeConfigInterface $scopeConfig
     ) {
         $this->productDataMapper = $productDataMapper;
-        $this->productRepository = $productRepository;
+        $this->productProvider = $productProvider;
         $this->priceFormatter = $priceFormatter;
         $this->scopeConfig = $scopeConfig;
     }
@@ -43,7 +44,7 @@ class CartItemDataMapper
     public function mapByCartItem(CartItemInterface $cartItem): array
     {
         try {
-            $product = $this->productRepository->get($cartItem->getSku());
+            $product = $this->productProvider->getBySku($cartItem->getSku());
             $cartItemData = $this->productDataMapper->mapByProduct($product);
         } catch (NoSuchEntityException $e) {
             $cartItemData = [];

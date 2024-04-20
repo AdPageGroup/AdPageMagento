@@ -9,7 +9,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use AdPage\GTM\Model\Config\Source\ViewCartOccurancesOptions;
+use AdPage\GTM\DataLayer\Tag\Version;
 
 class Config implements ArgumentInterface
 {
@@ -17,6 +17,7 @@ class Config implements ArgumentInterface
     private CookieHelper $cookieHelper;
     private StoreManagerInterface $storeManager;
     private AppState $appState;
+    private Version $version;
 
     /**
      * Config constructor.
@@ -29,12 +30,14 @@ class Config implements ArgumentInterface
         ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
         CookieHelper $cookieHelper,
-        AppState $appState
+        AppState $appState,
+        Version $version
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->cookieHelper = $cookieHelper;
         $this->appState = $appState;
+        $this->version = $version;
     }
 
     /**
@@ -50,6 +53,21 @@ class Config implements ArgumentInterface
         }
 
         return true;
+    }
+
+    /**
+     * Checks if the module should place the GTM code or it is done by the user
+     * 
+     * @return bool 
+     */
+    public function isPlacedByPlugin(): bool
+    {
+        $enabled = (bool)$this->getModuleConfigValue('choose_script_placement', false);
+        if (false === $enabled) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -152,6 +170,11 @@ class Config implements ArgumentInterface
         }
 
         return $value;
+    }
+
+    public function getVersion(): string
+    {
+        return $this->version->get();
     }
 
     /**
