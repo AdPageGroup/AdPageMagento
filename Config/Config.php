@@ -9,13 +9,11 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
 
 class Config implements ArgumentInterface
 {
     private ScopeConfigInterface $scopeConfig;
     private CookieHelper $cookieHelper;
-    private ModuleContextInterface $context;
     private StoreManagerInterface $storeManager;
     private AppState $appState;
 
@@ -29,14 +27,12 @@ class Config implements ArgumentInterface
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
-        ModuleContextInterface $context,
         CookieHelper $cookieHelper,
         AppState $appState
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->cookieHelper = $cookieHelper;
-        $this->context = $context;
         $this->appState = $appState;
     }
 
@@ -172,14 +168,9 @@ class Config implements ArgumentInterface
         return $value;
     }
 
-    /**
-     * Plugin version
-     * 
-     * @return string
-     */
     public function getVersion(): string
     {
-        return $this->context->getVersion();
+        return $this->getConfigValue('GTM/settings/version', '1.0.0');
     }
 
     /**

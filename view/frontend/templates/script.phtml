@@ -25,7 +25,7 @@ $config = $block->getConfig();
         echo "window.AdPage_PLACED_BY_PLUGIN = false;";
     }
 
-    echo "window.AdPage_PLUGIN_VERSION = '{$config->getGoogleTagmanagerUrl()}';";
+    echo "window.AdPage_PLUGIN_VERSION = '{$config->getVersion()}';";
     ?>
 
         (function(events) {
