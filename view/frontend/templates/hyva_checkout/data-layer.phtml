@@ -21,7 +21,7 @@ $beginCheckoutEvent = $block->getData('begin_checkout_event');
             "use strict";
 
             function triggerEvent(event) {
-                yireoGoogleTagManager2Pusher(event.detail, 'Hyva Checkout');
+                googleTagManager2Pusher(event.detail, 'Hyva Checkout');
             }
 
             triggerEvent(new CustomEvent('ga:trigger-event', {detail: <?= json_encode($beginCheckoutEvent->get()) ?>}));
