@@ -9,12 +9,13 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use AdPage\GTM\Model\Config\Source\ViewCartOccurancesOptions;
+use Magento\Framework\Setup\ModuleContextInterface;
 
 class Config implements ArgumentInterface
 {
     private ScopeConfigInterface $scopeConfig;
     private CookieHelper $cookieHelper;
+    private ModuleContextInterface $context;
     private StoreManagerInterface $storeManager;
     private AppState $appState;
 
@@ -28,12 +29,14 @@ class Config implements ArgumentInterface
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
+        ModuleContextInterface $context,
         CookieHelper $cookieHelper,
         AppState $appState
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->cookieHelper = $cookieHelper;
+        $this->context = $context;
         $this->appState = $appState;
     }
 
@@ -59,7 +62,12 @@ class Config implements ArgumentInterface
      */
     public function isPlacedByPlugin(): bool
     {
-        return (bool)$this->getModuleConfigValue('placed_by_plugin', true);
+        $enabled = (bool)$this->getModuleConfigValue('choose_script_placement', false);
+        if (false === $enabled) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -162,6 +170,16 @@ class Config implements ArgumentInterface
         }
 
         return $value;
+    }
+
+    /**
+     * Plugin version
+     * 
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->context->getVersion();
     }
 
     /**

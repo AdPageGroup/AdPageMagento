@@ -32,13 +32,14 @@ class ScriptTest extends PageTestCase
         $body = $this->getResponse()->getBody(); // @phpstan-ignore-line
         $this->assertTrue((bool)strpos($body, 'gtm.tryforwarder.com'), 'Script not found in HTML body: ' . $body);
         $this->assertTrue((bool)strpos($body, 'var ADPAGE_TEST_CONFIG = true'), 'Config script found in HTML head: ' . $body);
+        $this->assertTrue((bool)strpos($body, 'window.AdPage_PLACED_BY_PLUGIN = true'), 'Did not found window settings: ' . $body);
     }
 
     /**
      * @magentoConfigFixture current_store GTM/settings/enabled 1
      * @magentoConfigFixture current_store GTM/settings/config var ADPAGE_TEST_CONFIG = true
      * @magentoConfigFixture current_store GTM/settings/serverside_gtm_url gtm.tryforwarder.com
-     * @magentoConfigFixture current_store GTM/settings/placed_by_plugin 0
+     * @magentoConfigFixture current_store GTM/settings/choose_script_placement 1
      */
     public function testDisableScriptPlacement()
     {
@@ -55,5 +56,6 @@ class ScriptTest extends PageTestCase
         $body = $this->getResponse()->getBody(); // @phpstan-ignore-line
         $this->assertTrue(!(bool)strpos($body, 'gtm.tryforwarder.com'), 'Script found in HTML body: ' . $body);
         $this->assertTrue(!(bool)strpos($body, 'var ADPAGE_TEST_CONFIG = true'), 'Config script found in HTML head: ' . $body);
+        $this->assertTrue((bool)strpos($body, 'window.AdPage_PLACED_BY_PLUGIN = false'), 'Did not found window settings: ' . $body);
     }
 }

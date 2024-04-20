@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 use Magento\Framework\View\Element\Template;
 use AdPage\GTM\Config\Config;
@@ -10,26 +12,45 @@ $config = $block->getConfig();
 <script>
     window.AdPage_GTM_ENABLED = true;
 
-    (function (events) {
-        const initgoogleTagManager2 = function () {
-            events.forEach(function (eventType) {
-                window.removeEventListener(eventType, initgoogleTagManager2);
-            });
+    <?php
+    if ($config->isEnabled()) {
+        echo "window.AdPage_ENABLED_PLUGIN = true;";
+    } else {
+        echo "window.AdPage_ENABLED_PLUGIN = false;";
+    }
 
-            <?php
-                if ($config->isEnabled() && $conifg->isPlacedByPlugin()) {
+    if ($config->isPlacedByPlugin()) {
+        echo "window.AdPage_PLACED_BY_PLUGIN = true;";
+    } else {
+        echo "window.AdPage_PLACED_BY_PLUGIN = false;";
+    }
+
+    echo "window.AdPage_PLUGIN_VERSION = '{$config->getGoogleTagmanagerUrl()}';";
+    ?>
+
+        (function(events) {
+            const initgoogleTagManager2 = function() {
+                events.forEach(function(eventType) {
+                    window.removeEventListener(eventType, initgoogleTagManager2);
+                });
+
+                <?php
+                if ($config->isEnabled() && $config->isPlacedByPlugin()) {
                     echo $config->getConfig();
                 }
-            ?>
-        }
+                ?>
+            }
 
-        events.forEach(function (eventType) {
-            window.addEventListener(eventType, initgoogleTagManager2, {once: true, passive: true})
-        })
-    })(['load']);
+            events.forEach(function(eventType) {
+                window.addEventListener(eventType, initgoogleTagManager2, {
+                    once: true,
+                    passive: true
+                })
+            })
+        })(['load']);
 </script>
 
-<?php if ($config->isDebug()): ?>
+<?php if ($config->isDebug()) : ?>
     <script>
         window.AdPage_GTM_DEBUG = true;
     </script>

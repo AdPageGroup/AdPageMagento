@@ -44,11 +44,14 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
-                <field id="placed_by_plugin" type="select" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Placed by plugin</label>
+                <field id="choose_script_placement" type="select" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Choose script placement</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[<span>If you want to control on where the scripts are placed you can disable this option. Then the plugin will not load the files and you have to do it on your own.<span><br/>
+                    <comment><![CDATA[<span>If you want to control on where the scripts are placed you can enable this option. Then the plugin will not load the files and you have to do it on your own.<span><br/>
                     <b>NOTE</b>; If all necessary scripts are not included, tracking will not function.. ]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
                 </field>
             </group>
         </section>
