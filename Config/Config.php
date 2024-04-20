@@ -9,6 +9,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use AdPage\GTM\DataLayer\Tag\Version;
 
 class Config implements ArgumentInterface
 {
@@ -16,6 +17,7 @@ class Config implements ArgumentInterface
     private CookieHelper $cookieHelper;
     private StoreManagerInterface $storeManager;
     private AppState $appState;
+    private Version $version;
 
     /**
      * Config constructor.
@@ -28,12 +30,14 @@ class Config implements ArgumentInterface
         ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
         CookieHelper $cookieHelper,
-        AppState $appState
+        AppState $appState,
+        Version $version
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->cookieHelper = $cookieHelper;
         $this->appState = $appState;
+        $this->version = $version;
     }
 
     /**
@@ -170,7 +174,7 @@ class Config implements ArgumentInterface
 
     public function getVersion(): string
     {
-        return $this->getConfigValue('GTM/settings/version', '1.0.0');
+        return $this->version->get();
     }
 
     /**
