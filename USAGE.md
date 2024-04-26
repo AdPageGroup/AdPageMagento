@@ -9,6 +9,7 @@ The extension has the following configuration options:
 - **Container HEAD code**: The HEAD code found in the trytagging dashboard. Excluding script tags only what is inside the script tag.
 - **Container URL**: The URL you connected in the trytagging dashboard.
 - **Debug**: Enable this for additional debugging in a logfile and the browser console.
+- **Choose script placement**: Setting this option to YES will remove the tracking script from the page. Only use this option if you want to choose where the script is placed in the page. This option is not recommended for most users.
 
 # Tip: Browser extension
 Use the [DataLayer
