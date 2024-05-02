@@ -13,7 +13,7 @@ define([
             productData.item_id = productId;
 
             const eventData = {
-                'event': 'select_item',
+                'event': 'trytagging_select_item',
                 'ecommerce': {
                     'items': [productData]
                 }
