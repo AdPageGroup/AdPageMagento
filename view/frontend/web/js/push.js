@@ -1,6 +1,6 @@
-define(["googleTagManagerLogger", "generic"], function (logger, generic) {
+define(["googleTagManagerLogger", "Magento_Customer/js/customer-data"], function (logger, customerData) {
   return function (eventData, message) {
-    console.log("googleTagManagerPush", eventData, message, generic);
+    console.log("googleTagManagerPush", eventData, message, customerData);
 
     window.AdPage_GTM_PAST_EVENTS = window.AdPage_GTM_PAST_EVENTS || [];
 
