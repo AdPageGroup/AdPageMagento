@@ -1,7 +1,5 @@
 define(["googleTagManagerLogger", "Magento_Customer/js/customer-data"], function (logger, customerData) {
   return function (eventData, message) {
-    console.log("googleTagManagerPush", eventData, message, customerData);
-
     window.AdPage_GTM_PAST_EVENTS = window.AdPage_GTM_PAST_EVENTS || [];
 
     const metaData = Object.assign({}, eventData.meta);
