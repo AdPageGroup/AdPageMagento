@@ -66,6 +66,8 @@
                         <item name="user" xsi:type="array">
                             <item name="has_transacted" xsi:type="boolean">false</item>
                         </item>
+
+                        <item name="enhanced_customer" xsi:type="object">AdPage\GTM\DataLayer\Tag\EnhancedCustomer</item>
                     </argument>
                 </arguments>
             </block>
