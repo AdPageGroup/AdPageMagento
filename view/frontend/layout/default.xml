@@ -23,6 +23,24 @@
             </block>
         </referenceBlock>
 
+        <referenceBlock name="AdPage_GTM.data-layer">
+            <arguments>
+                <argument name="data_layer_events" xsi:type="array">
+                    <item name="view_item_event" xsi:type="array">
+                        <item name="event" xsi:type="string">trytagging_user_data</item>
+                    </item>
+                </argument>
+
+                <argument name="data_layer" xsi:type="array">
+                    <item name="plugin_version" xsi:type="object">AdPage\GTM\DataLayer\Tag\Version</item>
+                    <item name="page_title" xsi:type="object">AdPage\GTM\DataLayer\Tag\PageTitle</item>
+                     <item name="user" xsi:type="array">
+                        <item name="enhanced_customer" xsi:type="object">AdPage\GTM\DataLayer\Tag\EnhancedCustomer</item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
         <referenceContainer name="after.body.start">
             <block
                     name="AdPage_GTM.iframe"
@@ -66,8 +84,6 @@
                         <item name="user" xsi:type="array">
                             <item name="has_transacted" xsi:type="boolean">false</item>
                         </item>
-
-                        <item name="enhanced_customer" xsi:type="object">AdPage\GTM\DataLayer\Tag\EnhancedCustomer</item>
                     </argument>
                 </arguments>
             </block>
