@@ -33,12 +33,6 @@
             </arguments>
         </referenceBlock>
 
-        <block name="AdPage_GTM.customer-details" template="AdPage_GTM::customer/customer.phtml">
-            <arguments>
-                <argument name="customer" xsi:type="object">AdPage\GTM\DataLayer\Tag\Customer\Customer</argument>
-            </arguments>
-        </block>
-
         <referenceBlock
             name="AdPage_GTM.data-layer"
             template="AdPage_GTM::hyva/data-layer.phtml"/>

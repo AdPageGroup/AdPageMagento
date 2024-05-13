@@ -31,12 +31,6 @@
             </arguments>
         </referenceBlock>
 
-        <block name="AdPage_GTM.customer-details" template="AdPage_GTM::customer/customer.phtml">
-            <arguments>
-                <argument name="customer" xsi:type="object">AdPage\GTM\DataLayer\Tag\Customer\Customer</argument>
-            </arguments>
-        </block>
-
         <referenceContainer name="after.body.start">
             <block
                     name="AdPage_GTM.iframe"

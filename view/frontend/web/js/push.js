@@ -1,5 +1,7 @@
-define(["googleTagManagerLogger"], function (logger) {
+define(["googleTagManagerLogger", "generic"], function (logger, generic) {
   return function (eventData, message) {
+    console.log("googleTagManagerPush", eventData, message, generic);
+
     window.AdPage_GTM_PAST_EVENTS = window.AdPage_GTM_PAST_EVENTS || [];
 
     const metaData = Object.assign({}, eventData.meta);
