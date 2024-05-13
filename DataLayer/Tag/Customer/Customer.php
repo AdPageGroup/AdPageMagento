@@ -25,6 +25,6 @@ class Customer implements TagInterface
     {
         $customer = $this->customerSession->getCustomerId();
 
-        return $customer;
+        return ['id' => $customer, 'test' => 4];
     }
 }

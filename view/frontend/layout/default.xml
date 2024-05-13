@@ -25,21 +25,17 @@
 
         <referenceBlock name="AdPage_GTM.data-layer">
             <arguments>
-                <argument name="data_layer_processors" xsi:type="array">
-                    <item name="customer" xsi:type="object">AdPage\GTM\DataLayer\Processor\Customer</item>
-                </argument>
-
                 <argument name="data_layer_events" xsi:type="array">
                     <item name="user_data" xsi:type="object">AdPage\GTM\DataLayer\Event\UserData</item>
-                    <item name="user_data_event" xsi:type="array">
-                        <item name="event" xsi:type="string">trytagging_user_data</item>                        
-                        <item name="page" xsi:type="array">
-                            <item name="title" xsi:type="object">AdPage\GTM\DataLayer\Tag\PageTitle</item>
-                        </item>
-                    </item>
                 </argument>
             </arguments>
         </referenceBlock>
+
+        <block name="AdPage_GTM.customer-details" template="AdPage_GTM::customer/customer.phtml">
+            <arguments>
+                <argument name="customer" xsi:type="object">AdPage\GTM\DataLayer\Tag\Customer\Customer</argument>
+            </arguments>
+        </block>
 
         <referenceContainer name="after.body.start">
             <block

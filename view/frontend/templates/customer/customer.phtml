@@ -1,0 +1,10 @@
+<?php declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+$customerDetails = $block->getCustomerDetails();
+?>
+<script>
+    window['AP_CUSTOMER_DETAILS'] = <?= $customerDetails ?>;
+</script>
