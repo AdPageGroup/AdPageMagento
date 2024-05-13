@@ -19,10 +19,9 @@ class Customer implements TagInterface
     }
 
     /**
-     * @return array
      * @throws NoSuchEntityException
      */
-    public function get(): array
+    public function get()
     {
         $customer = $this->customerSession->getCustomerId();
 
