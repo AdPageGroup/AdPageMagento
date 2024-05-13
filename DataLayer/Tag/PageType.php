@@ -18,6 +18,6 @@ class PageType implements TagInterface
     public function get(): string
     {
         $controllerName = $this->request->getControllerName(); // @phpstan-ignore-line
-        return $controllerName;
+        return (string)$controllerName;
     }
 }
