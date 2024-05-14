@@ -17,7 +17,7 @@ class CurrentStore implements TagInterface
         $this->storeManager = $storeManager;
     }
 
-    public function get(): array
+    public function get()
     {
         return $this->storeManager->getStore()->getCurrentUrl();
     }
