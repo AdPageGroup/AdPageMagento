@@ -19,7 +19,7 @@ define([
             productData.quantity = formData.qty || 1;
 
             const eventData = {
-                'event': 'add_to_cart',
+                'event': 'trytagging_add_to_cart',
                 'ecommerce': {
                     'items': [productData]
                 }

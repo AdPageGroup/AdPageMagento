@@ -16,7 +16,6 @@ $dataLayerEventsJsonChunks = $dataLayerViewModel->getDataLayerEventsAsJsonChunks
 ?>
 <script>
     function callInitialDataLayer() {
-        googleTagManager2Pusher(<?= /* @noEscape */ $dataLayerJson ?>, 'push (initial page) [data-layer.phtml]');
         <?php foreach ($dataLayerEventsJsonChunks as $dataLayerEventsJsonChunk) : ?>
             googleTagManager2Pusher(<?= /* @noEscape */ $dataLayerEventsJsonChunk ?>, 'push (page-based event) [data-layer.phtml]');
         <?php endforeach; ?>
@@ -37,4 +36,6 @@ $dataLayerEventsJsonChunks = $dataLayerViewModel->getDataLayerEventsAsJsonChunks
             }, 750);
         }
     });
+
+    googleTagManager2Pusher(<?= /* @noEscape */ $dataLayerJson ?>, 'push (initial page) [data-layer.phtml]');
 </script>

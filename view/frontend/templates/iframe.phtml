@@ -12,33 +12,4 @@ echo "
 <script defer src='https://{$config->getGoogleTagmanagerUrl()}/settings.js'></script>
 ";
 }
-
-if ($config->isEnabled() && $config->getGoogleTagmanagerUrl() && strlen($config->getGoogleTagmanagerUrl()) > 0) {
-?>
-    <script>
-        function callUserData() {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: "trytagging_user_data",
-                marketing: window.taggingHelpers.getMarketingObject(),
-                device: window.taggingHelpers.getDeviceInfo(),
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            if (window.taggingHelpers) {
-                callUserData();
-            } else {
-                setTimeout(function() {
-                    if (window.taggingHelpers) {
-                        callUserData();
-                    } else {
-                        console.log("taggingHelpers not available after wait");
-                    }
-                }, 750);
-            }
-        });
-    </script>
-<?php
-}
 ?>
