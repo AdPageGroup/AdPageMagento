@@ -46,7 +46,6 @@ class AddToCart implements EventInterface
         $qty = ($this->qty > 0) ? $this->qty : 1;
 
         $product = $this->productRepository->get($this->product->getSku());
-
         $itemData = $this->productDataMapper->mapByProduct($product);
         $itemData['quantity'] = $qty;
         $value = $itemData['price'] * $qty;
