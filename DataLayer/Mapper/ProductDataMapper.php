@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace AdPage\GTM\DataLayer\Mapper;
 
@@ -62,7 +64,7 @@ class ProductDataMapper
     public function mapByProduct(ProductInterface $product): array
     {
         $prefix = 'item_';
-        $productData = [];        
+        $productData = [];
         $productFields = $this->getProductFields();
         foreach ($productFields as $productAttributeCode) {
             $dataLayerKey = $prefix . $productAttributeCode;
@@ -80,9 +82,6 @@ class ProductDataMapper
         $productData['magento_id'] = $product->getId();
 
         $parentIds = $this->configurableType->getParentIdsByChild($product->getId());
-
-        $productData['debug'] = $parentIds;
-        $productData['debug_id'] = $product->getId();
 
         if (!empty($parentIds)) {
             $parentProduct = $this->productRepository->getById($parentIds[0]);
