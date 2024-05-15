@@ -9,6 +9,7 @@ use AdPage\GTM\Api\Data\EventInterface;
 use AdPage\GTM\DataLayer\Mapper\ProductDataMapper;
 use AdPage\GTM\DataLayer\Tag\CurrencyCode;
 use AdPage\GTM\Util\PriceFormatter;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 class AddToCart implements EventInterface
 {
@@ -16,6 +17,7 @@ class AddToCart implements EventInterface
     private CurrencyCode $currencyCode;
     private PriceFormatter $priceFormatter;
     private Product $product;
+    private ProductRepositoryInterface $productRepository;
     private int $qty = 1;
 
     /**
@@ -25,11 +27,13 @@ class AddToCart implements EventInterface
     public function __construct(
         ProductDataMapper $productDataMapper,
         CurrencyCode $currencyCode,
-        PriceFormatter $priceFormatter
+        PriceFormatter $priceFormatter,
+        ProductRepositoryInterface $productRepository
     ) {
         $this->productDataMapper = $productDataMapper;
         $this->currencyCode = $currencyCode;
         $this->priceFormatter = $priceFormatter;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -41,7 +45,8 @@ class AddToCart implements EventInterface
     {
         $qty = ($this->qty > 0) ? $this->qty : 1;
 
-        $itemData = $this->productDataMapper->mapByProduct($this->product);
+        $product = $this->productRepository->get($this->product->getSku());
+        $itemData = $this->productDataMapper->mapByProduct($product);
         $itemData['quantity'] = $qty;
         $value = $itemData['price'] * $qty;
 

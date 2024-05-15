@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace AdPage\GTM\DataLayer\Mapper;
 
@@ -6,12 +8,14 @@ use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Pricing\Price\FinalPrice;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use AdPage\GTM\Api\Data\ProductTagInterface;
 use AdPage\GTM\Api\Data\TagInterface;
 use AdPage\GTM\Config\Config;
 use AdPage\GTM\Util\Attribute\GetAttributeValue;
 use AdPage\GTM\Util\PriceFormatter;
 use AdPage\GTM\Util\CategoryProvider;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 class ProductDataMapper
 {
@@ -19,6 +23,8 @@ class ProductDataMapper
     private GetAttributeValue $getAttributeValue;
     private CategoryProvider $categoryProvider;
     private PriceFormatter $priceFormatter;
+    private Configurable $configurableType;
+    private ProductRepositoryInterface $productRepository;
 
     private array $dataLayerMapping;
 
@@ -36,12 +42,16 @@ class ProductDataMapper
         GetAttributeValue $getAttributeValue,
         CategoryProvider $categoryProvider,
         PriceFormatter $priceFormatter,
+        Configurable $configurableType,
+        ProductRepositoryInterface $productRepository,
         array $dataLayerMapping = []
     ) {
         $this->config = $config;
         $this->getAttributeValue = $getAttributeValue;
         $this->categoryProvider = $categoryProvider;
         $this->priceFormatter = $priceFormatter;
+        $this->configurableType = $configurableType;
+        $this->productRepository = $productRepository;
         $this->dataLayerMapping = $dataLayerMapping;
     }
 
@@ -54,7 +64,7 @@ class ProductDataMapper
     public function mapByProduct(ProductInterface $product): array
     {
         $prefix = 'item_';
-        $productData = [];        
+        $productData = [];
         $productFields = $this->getProductFields();
         foreach ($productFields as $productAttributeCode) {
             $dataLayerKey = $prefix . $productAttributeCode;
@@ -70,6 +80,14 @@ class ProductDataMapper
         $productData['item_sku'] = $product->getSku();
         $productData['magento_sku'] = $product->getSku();
         $productData['magento_id'] = $product->getId();
+
+        $parentIds = $this->configurableType->getParentIdsByChild($product->getId());
+
+        if (!empty($parentIds)) {
+            $parentProduct = $this->productRepository->getById($parentIds[0]);
+            $productData['item_id'] = $parentProduct->getSku();
+            $productData['item_variant'] = $product->getSku();
+        }
 
         try {
             $category = $this->categoryProvider->getFirstByProduct($product);
