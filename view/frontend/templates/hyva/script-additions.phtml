@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /**
  * GoogleTagManager2 plugin for Magento
@@ -19,7 +21,7 @@ $commons = $block->getCommonsViewModel();
     window.addEventListener('private-content-loaded', function(event) {
         window.dataLayer = window.dataLayer || [];
 
-        var isEmpty = function (variable) {
+        var isEmpty = function(variable) {
             if (typeof variable === 'undefined') {
                 return true;
             }
@@ -31,11 +33,11 @@ $commons = $block->getCommonsViewModel();
             return typeof variable === 'object' && Object.keys(variable).length === 0;
         }
 
-        var getSectionNames = function () {
+        var getSectionNames = function() {
             return ['cart', 'customer'];
         }
 
-        getSectionNames().forEach(function (sectionName) {
+        getSectionNames().forEach(function(sectionName) {
             if (!event.detail.data[sectionName].gtm) {
                 return;
             }
@@ -49,7 +51,7 @@ $commons = $block->getCommonsViewModel();
         });
 
         let attributes = {};
-        getSectionNames().forEach(function (sectionName) {
+        getSectionNames().forEach(function(sectionName) {
             if (!event.detail.data[sectionName].gtm_events) {
                 return;
             }
@@ -69,14 +71,16 @@ $commons = $block->getCommonsViewModel();
                         mageCacheStorage = JSON.parse(JSON.stringify(mageCacheStorage));
                     }
 
-                    if (mageCacheStorage !== null
-                        && typeof mageCacheStorage[sectionName] !== 'undefined'
-                        && typeof mageCacheStorage[sectionName].gtm_events !== 'undefined'
-                        && eventId in mageCacheStorage[sectionName].gtm_events) {
+                    if (mageCacheStorage !== null &&
+                        typeof mageCacheStorage[sectionName] !== 'undefined' &&
+                        typeof mageCacheStorage[sectionName].gtm_events !== 'undefined' &&
+                        eventId in mageCacheStorage[sectionName].gtm_events) {
                         delete mageCacheStorage[sectionName].gtm_events[eventId];
                     }
 
-                    window.localStorage.setItem('mage-cache-storage', JSON.stringify(mageCacheStorage));
+                    setTimeout(() => {
+                        window.localStorage.setItem('mage-cache-storage', JSON.stringify(mageCacheStorage));
+                    }, 100);
                 }
             }
         });
