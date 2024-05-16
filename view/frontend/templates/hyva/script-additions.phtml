@@ -66,7 +66,7 @@ $commons = $block->getCommonsViewModel();
 
                     let mageCacheStorage = event.detail.data;
                     if (mageCacheStorage) {
-                        mageCacheStorage = JSON.parse(mageCacheStorage);
+                        mageCacheStorage = JSON.parse(JSON.stringify(mageCacheStorage));
                     }
 
                     if (mageCacheStorage !== null
