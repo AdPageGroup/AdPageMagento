@@ -11,6 +11,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Framework\Stdlib\CookieManagerInterface;
 use Psr\Log\LoggerInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
+use TypeError;
 
 class TriggerCheckoutSessionSaveEvent implements ObserverInterface
 {
@@ -37,10 +38,14 @@ class TriggerCheckoutSessionSaveEvent implements ObserverInterface
             /** @var OrderInterface $order */
             $order = $observer->getData('order');
             $customData = $this->checkoutSession->getData('trytagging_marketing');
+            $marketingCookie = $this->cookieManager->getCookie('trytagging_user_data');
 
-            $marketingCookie = json_decode(base64_decode($this->cookieManager->getCookie('trytagging_user_data')), true);
-            $marketingCookie['ip'] = $_SERVER['REMOTE_ADDR'];
-            $marketingCookie = json_encode($marketingCookie);
+            if ($marketingCookie) {
+                $marketingCookie = json_decode(base64_decode($marketingCookie), true);
+                $marketingCookie['ip'] = $_SERVER['REMOTE_ADDR'];
+                $marketingCookie = json_encode($marketingCookie);
+            }
+
 
             $saveData = strlen($marketingCookie) > 10 ? $marketingCookie : $customData;
 
@@ -50,6 +55,8 @@ class TriggerCheckoutSessionSaveEvent implements ObserverInterface
                 $this->checkoutSession->unsetData('trytagging_marketing');
             }
         } catch (\Exception $e) {
+            $this->logger->error("TriggerCheckoutSessionSaveEvent: " . $e->getMessage());
+        } catch (TypeError $e) {
             $this->logger->error("TriggerCheckoutSessionSaveEvent: " . $e->getMessage());
         }
     }
