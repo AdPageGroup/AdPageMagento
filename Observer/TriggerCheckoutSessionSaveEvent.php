@@ -57,7 +57,7 @@ class TriggerCheckoutSessionSaveEvent implements ObserverInterface
         } catch (\Exception $e) {
             $this->logger->error("TriggerCheckoutSessionSaveEvent: " . $e->getMessage());
         } catch (TypeError $e) {
-            // No logging needed
+            $this->logger->error("TriggerCheckoutSessionSaveEvent: TypeError");
         }
     }
 }
