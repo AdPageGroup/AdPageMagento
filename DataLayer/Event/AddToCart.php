@@ -9,6 +9,7 @@ use AdPage\GTM\Api\Data\EventInterface;
 use AdPage\GTM\DataLayer\Mapper\ProductDataMapper;
 use AdPage\GTM\DataLayer\Tag\CurrencyCode;
 use AdPage\GTM\Util\PriceFormatter;
+use Exception;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 
 class AddToCart implements EventInterface
@@ -45,7 +46,14 @@ class AddToCart implements EventInterface
     {
         $qty = ($this->qty > 0) ? $this->qty : 1;
 
-        $product = $this->productRepository->get($this->product->getSku());
+        $product = $this->product;
+
+        try {
+            $product = $this->productRepository->get($this->product->getSku());
+        } catch (Exception $e) {
+            // Continue normal product flow since the sku is not found.
+        }
+        
         $itemData = $this->productDataMapper->mapByProduct($product);
         $itemData['quantity'] = $qty;
         $value = $itemData['price'] * $qty;
