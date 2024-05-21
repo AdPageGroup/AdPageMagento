@@ -46,6 +46,8 @@ class AddToCart implements EventInterface
     {
         $qty = ($this->qty > 0) ? $this->qty : 1;
 
+        $product = $this->product;
+
         try {
             $product = $this->productRepository->get($this->product->getSku());
         } catch (Exception $e) {
